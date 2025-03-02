@@ -24,7 +24,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     ""name"": ""PlayerActions"",
     ""maps"": [
         {
-            ""name"": ""Movement"",
+            ""name"": ""PlayerActionMap"",
             ""id"": ""09033d99-0bab-4d1a-843e-a430918b7ffc"",
             ""actions"": [
                 {
@@ -35,6 +35,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d0e5cde-5bd3-4e43-9d75-3a91e23b5acc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,15 +57,82 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""b4269bfe-d4be-41a0-9a73-a54fe74eccb2"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""9e8f5451-ce2e-4e4d-b982-04fea08d792a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4361f986-4d44-44e4-9acf-969e735546b9"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""12221b60-8677-4802-a1ea-2413ad02d199"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ef71c452-f5ba-47fe-9c38-0be5440f4101"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0623a01-692f-4109-a90c-66717d539ef9"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // Movement
-        m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-        m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
+        // PlayerActionMap
+        m_PlayerActionMap = asset.FindActionMap("PlayerActionMap", throwIfNotFound: true);
+        m_PlayerActionMap_Move = m_PlayerActionMap.FindAction("Move", throwIfNotFound: true);
+        m_PlayerActionMap_Attack = m_PlayerActionMap.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -115,53 +191,62 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Movement
-    private readonly InputActionMap m_Movement;
-    private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
-    private readonly InputAction m_Movement_Move;
-    public struct MovementActions
+    // PlayerActionMap
+    private readonly InputActionMap m_PlayerActionMap;
+    private List<IPlayerActionMapActions> m_PlayerActionMapActionsCallbackInterfaces = new List<IPlayerActionMapActions>();
+    private readonly InputAction m_PlayerActionMap_Move;
+    private readonly InputAction m_PlayerActionMap_Attack;
+    public struct PlayerActionMapActions
     {
         private @PlayerActions m_Wrapper;
-        public MovementActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Movement_Move;
-        public InputActionMap Get() { return m_Wrapper.m_Movement; }
+        public PlayerActionMapActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PlayerActionMap_Move;
+        public InputAction @Attack => m_Wrapper.m_PlayerActionMap_Attack;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MovementActions set) { return set.Get(); }
-        public void AddCallbacks(IMovementActions instance)
+        public static implicit operator InputActionMap(PlayerActionMapActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActionMapActions instance)
         {
-            if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_MovementActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerActionMapActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionMapActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
         }
 
-        private void UnregisterCallbacks(IMovementActions instance)
+        private void UnregisterCallbacks(IPlayerActionMapActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
         }
 
-        public void RemoveCallbacks(IMovementActions instance)
+        public void RemoveCallbacks(IPlayerActionMapActions instance)
         {
-            if (m_Wrapper.m_MovementActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionMapActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IMovementActions instance)
+        public void SetCallbacks(IPlayerActionMapActions instance)
         {
-            foreach (var item in m_Wrapper.m_MovementActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionMapActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_MovementActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionMapActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public MovementActions @Movement => new MovementActions(this);
-    public interface IMovementActions
+    public PlayerActionMapActions @PlayerActionMap => new PlayerActionMapActions(this);
+    public interface IPlayerActionMapActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

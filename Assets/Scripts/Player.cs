@@ -37,15 +37,12 @@ public class Player : MonoBehaviour
 
 
     [Header("Other")]
-    [SerializeField] private AttributeScaling attributeScaling;
-    [SerializeField] private CharacteristicsStatScaling characteristicsStatScaling;
+    [SerializeField] private ClassStatsScaling classStatsScaling;
     [SerializeField] private Rigidbody2D rb;
 
     private void Start()
     {
-        CalculateAttributes();
-        Calculate—haracteristics();
-        CalculateStats();
+        CalculateAllStats();
     }
     void Update()
     {
@@ -67,42 +64,53 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetClassStatsScaling(ClassStatsScaling newClassStatsScaling)
+    {
+        classStatsScaling = newClassStatsScaling;
+    }
+
+    public void CalculateAllStats()
+    {
+        CalculateAttributes();
+        Calculate—haracteristics();
+        CalculateStats();
+    }
     private void CalculateAttributes()
     {
-        if(attributeScaling != null)
+        if(classStatsScaling != null)
         {
-            strength = level * attributeScaling.strength;
-            agility = level * attributeScaling.agility;
-            intelligence = level * attributeScaling.intelligence;
+            strength = level * classStatsScaling.strength;
+            agility = level * classStatsScaling.agility;
+            intelligence = level * classStatsScaling.intelligence;
         }
     }
     private void Calculate—haracteristics()
     {
-        if (characteristicsStatScaling != null)
+        if (classStatsScaling != null)
         {
-            physicalPower = strength * characteristicsStatScaling.physicalPower;
-            resistance = strength * characteristicsStatScaling.resistance;
+            physicalPower = strength * classStatsScaling.physicalPower;
+            resistance = strength * classStatsScaling.resistance;
 
-            endurance = agility * characteristicsStatScaling.endurance;
-            quickness = agility * characteristicsStatScaling.quickness;
+            endurance = agility * classStatsScaling.endurance;
+            quickness = agility * classStatsScaling.quickness;
 
-            magicalPower = intelligence * characteristicsStatScaling.magicalPower;
-            wisdom = intelligence * characteristicsStatScaling.wisdom;
+            magicalPower = intelligence * classStatsScaling.magicalPower;
+            wisdom = intelligence * classStatsScaling.wisdom;
         }
     }
     private void CalculateStats()
     {
-        if (characteristicsStatScaling != null)
+        if (classStatsScaling != null)
         {
-            health += (physicalPower * characteristicsStatScaling.physicalPowerToHealth + resistance * characteristicsStatScaling.resistanceToHealth);
-            mana += (magicalPower * characteristicsStatScaling.magicalPowerToMana + magicalProtection * characteristicsStatScaling.magicalPowerToMana);
-            stamina += (endurance * characteristicsStatScaling.enduranceToStamina + quickness * characteristicsStatScaling.quicknessToStamina);
-            moveSpeed += endurance * characteristicsStatScaling.enduranceToMoveSpeed;
-            attackSpeed += quickness * characteristicsStatScaling.quicknessToAttackSpeed;
-            physicalDamage += physicalPower * characteristicsStatScaling.physicalPowerToPhysicalDamage;
-            magicalDamage += magicalPower * characteristicsStatScaling.magicalPowerToMagicalDamage;
-            physicalProtection += resistance * characteristicsStatScaling.resistanceToPhysicalProtection;
-            magicalProtection += wisdom * characteristicsStatScaling.wisdomToMagicalProtection;
+            health += classStatsScaling.startHealth + (physicalPower * classStatsScaling.physicalPowerToHealth + resistance * classStatsScaling.resistanceToHealth);
+            mana += classStatsScaling.startMana + (magicalPower * classStatsScaling.magicalPowerToMana + magicalProtection * classStatsScaling.magicalPowerToMana);
+            stamina += classStatsScaling.startStamina + (endurance * classStatsScaling.enduranceToStamina + quickness * classStatsScaling.quicknessToStamina);
+            moveSpeed += classStatsScaling.startMoveSpeed + endurance * classStatsScaling.enduranceToMoveSpeed;
+            attackSpeed += classStatsScaling.startAttackSpeed + quickness * classStatsScaling.quicknessToAttackSpeed;
+            physicalDamage += classStatsScaling.startPhysicalDamage + physicalPower * classStatsScaling.physicalPowerToPhysicalDamage;
+            magicalDamage += classStatsScaling.startMagicalDamage + magicalPower * classStatsScaling.magicalPowerToMagicalDamage;
+            physicalProtection += resistance * classStatsScaling.resistanceToPhysicalProtection;
+            magicalProtection += wisdom * classStatsScaling.wisdomToMagicalProtection;
         }
     }
 }

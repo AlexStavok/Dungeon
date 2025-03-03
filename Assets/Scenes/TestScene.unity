@@ -699,8 +699,7 @@ MonoBehaviour:
   physicalProtection: 0
   magicalProtection: 0
   level: 30
-  attributeScaling: {fileID: 11400000, guid: a9c96ad21a5a6984cbabd48d35781f68, type: 2}
-  characteristicsStatScaling: {fileID: 11400000, guid: e0c929873ea2298459c7125fbd088602, type: 2}
+  classStatsScaling: {fileID: 11400000, guid: e0c929873ea2298459c7125fbd088602, type: 2}
   rb: {fileID: 1487776533}
 --- !u!50 &1487776533
 Rigidbody2D:

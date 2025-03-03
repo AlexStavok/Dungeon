@@ -3,10 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "NewCharacteristicsStatScaling", menuName = "Game/Characteristics Stat Scaling")]
-public class CharacteristicsStatScaling : ScriptableObject
+[CreateAssetMenu(fileName = "NewClassStatScaling", menuName = "Game/Class Stat Scaling")]
+public class ClassStatsScaling : ScriptableObject
 {
-    // How many characteristics and stats a player will get for each attribute
+    // How many attributes for each level,characteristics for each attribute, stats for each characteristic
+
+    [Header("StartStats")]
+    public float startHealth = 0f;
+    public float startMana = 0f;
+    public float startStamina = 0f;
+    public float startMoveSpeed = 0f;
+    public float startAttackSpeed = 0f;
+    public float startPhysicalDamage = 0f;
+    public float startMagicalDamage = 0f;
+
+    [Header("Level -> Attributes")]
+
+    public float strength = 0f;
+    public float agility = 0f;
+    public float intelligence = 0f;
 
     [Header("Attributes -> Characteristics")]
 
@@ -33,8 +48,8 @@ public class CharacteristicsStatScaling : ScriptableObject
     public float resistanceToHealth = 0f;
 
     [Header("endurance")]
-    public float enduranceToStamina = 0f;
     public float enduranceToMoveSpeed = 0f;
+    public float enduranceToStamina = 0f;
 
     [Header("quickness")]
     public float quicknessToAttackSpeed = 0f;

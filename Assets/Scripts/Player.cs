@@ -5,48 +5,44 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Attributes")]
-    [SerializeField] private float strength = 0f;
-    [SerializeField] private float agility = 0f;
-    [SerializeField] private float intelligence = 0f;
+    [SerializeField] private float strength;
+    [SerializeField] private float agility;
+    [SerializeField] private float intelligence;
+
 
     [Header("Ñharacteristics")]
-    [SerializeField] private float physicalPower = 0f;
-    [SerializeField] private float resistance = 0f;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float health;
+    [SerializeField] private float maxMana;
+    [SerializeField] private float mana;
+    [SerializeField] private float maxStamina;
+    [SerializeField] private float stamina;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private float magicPower;
+    [SerializeField] private float blockingDamage;
+    [SerializeField] private float armor;
+    [SerializeField] private float magicResistance;
+    [SerializeField] private float effectsResistance;
 
     [Space(5)]
-    [SerializeField] private float endurance = 0f;
-    [SerializeField] private float quickness = 0f;
+    [SerializeField] private float moveSpeed;
 
     [Space(5)]
-    [SerializeField] private float magicalPower = 0f;
-    [SerializeField] private float wisdom = 0f;
-
-    [Header("Stats")]
-    [SerializeField] private float health = 0f;
-    [SerializeField] private float mana = 0f;
-    [SerializeField] private float stamina = 0f;
-    [SerializeField] private float moveSpeed = 0f;
-    [SerializeField] private float attackSpeed = 0f;
-    [SerializeField] private float physicalDamage = 0f;
-    [SerializeField] private float magicalDamage = 0f;
-    [SerializeField] private float physicalProtection = 0f;
-    [SerializeField] private float magicalProtection = 0f;
-
-    [Space(5)]
-    [SerializeField] private int level = 0;
+    [SerializeField] private int level;
 
 
     [Header("Other")]
-    [SerializeField] private ClassStatsScaling classStatsScaling;
+    [SerializeField] private ClassConfigSO classConfigSO;
+    [SerializeField] private ÑharacteristicsConfigSO ñharacteristicsConfigSO;
     [SerializeField] private Rigidbody2D rb;
 
     private void Start()
     {
-        CalculateAllStats();
+        SetStartAttributes();
+        CalculateStartCharacteristics();
     }
     void Update()
     {
-        DeathHandler();
         MovementHandler();
     }
     private void MovementHandler()
@@ -56,6 +52,20 @@ public class Player : MonoBehaviour
         rb.velocity = vector * moveSpeed;
         //gameObject.transform.Translate(vector * movementSpeed * Time.deltaTime);
     }
+
+    public void TakeDamage(Damage damage)
+    {
+        switch (damage.damageType)
+        {
+            case Damage.DamageType.Physical:
+                health -= (damage.damageAmount - blockingDamage) * (1 - armor);
+                break;
+            case Damage.DamageType.Magical:
+                health -= damage.damageAmount* (1 - magicResistance);
+                break;
+        }
+        DeathHandler();
+    }
     private void DeathHandler()
     {
         if(health <= 0)
@@ -64,53 +74,34 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetClassStatsScaling(ClassStatsScaling newClassStatsScaling)
+    private void SetStartAttributes()
     {
-        classStatsScaling = newClassStatsScaling;
-    }
+        if (classConfigSO == null)
+            return;
+        strength = classConfigSO.startStrength;
+        agility = classConfigSO.startAgility;
+        intelligence = classConfigSO.startIntelligence;
 
-    public void CalculateAllStats()
-    {
-        CalculateAttributes();
-        CalculateÑharacteristics();
-        CalculateStats();
+        moveSpeed = classConfigSO.moveSpeed;
     }
-    private void CalculateAttributes()
+    private void CalculateStartCharacteristics()
     {
-        if(classStatsScaling != null)
-        {
-            strength = level * classStatsScaling.strength;
-            agility = level * classStatsScaling.agility;
-            intelligence = level * classStatsScaling.intelligence;
-        }
-    }
-    private void CalculateÑharacteristics()
-    {
-        if (classStatsScaling != null)
-        {
-            physicalPower = strength * classStatsScaling.physicalPower;
-            resistance = strength * classStatsScaling.resistance;
+        if(ñharacteristicsConfigSO == null)
+            return;
+        maxHealth = strength * ñharacteristicsConfigSO.health;
+        effectsResistance = strength * ñharacteristicsConfigSO.effectsResistance;
+        blockingDamage = strength * ñharacteristicsConfigSO.blockingDamage;
 
-            endurance = agility * classStatsScaling.endurance;
-            quickness = agility * classStatsScaling.quickness;
+        attackSpeed = agility * ñharacteristicsConfigSO.attackSpeed;
+        armor = agility * ñharacteristicsConfigSO.armor;
+        maxStamina = agility * ñharacteristicsConfigSO.stamina;
 
-            magicalPower = intelligence * classStatsScaling.magicalPower;
-            wisdom = intelligence * classStatsScaling.wisdom;
-        }
-    }
-    private void CalculateStats()
-    {
-        if (classStatsScaling != null)
-        {
-            health += classStatsScaling.startHealth + (physicalPower * classStatsScaling.physicalPowerToHealth + resistance * classStatsScaling.resistanceToHealth);
-            mana += classStatsScaling.startMana + (magicalPower * classStatsScaling.magicalPowerToMana + magicalProtection * classStatsScaling.magicalPowerToMana);
-            stamina += classStatsScaling.startStamina + (endurance * classStatsScaling.enduranceToStamina + quickness * classStatsScaling.quicknessToStamina);
-            moveSpeed += classStatsScaling.startMoveSpeed + endurance * classStatsScaling.enduranceToMoveSpeed;
-            attackSpeed += classStatsScaling.startAttackSpeed + quickness * classStatsScaling.quicknessToAttackSpeed;
-            physicalDamage += classStatsScaling.startPhysicalDamage + physicalPower * classStatsScaling.physicalPowerToPhysicalDamage;
-            magicalDamage += classStatsScaling.startMagicalDamage + magicalPower * classStatsScaling.magicalPowerToMagicalDamage;
-            physicalProtection += resistance * classStatsScaling.resistanceToPhysicalProtection;
-            magicalProtection += wisdom * classStatsScaling.wisdomToMagicalProtection;
-        }
+        maxMana = intelligence * ñharacteristicsConfigSO.mana;
+        magicResistance = intelligence * ñharacteristicsConfigSO.magicResistance;
+        magicPower = intelligence * ñharacteristicsConfigSO.magicPower;
+
+        health = maxHealth;
+        mana = maxMana;
+        stamina = maxStamina;
     }
 }

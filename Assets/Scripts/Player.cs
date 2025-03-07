@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
+
     [Header("Attributes")]
     [SerializeField] private float strength;
     [SerializeField] private float agility;
@@ -27,8 +30,11 @@ public class Player : MonoBehaviour
     [Space(5)]
     [SerializeField] private float moveSpeed;
 
-    [Space(5)]
+
+    [Header("Level")]
     [SerializeField] private int level;
+    [SerializeField] private int characteristicPoints;
+    [SerializeField] private int skillPoints;
 
 
     [Header("Other")]
@@ -38,6 +44,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         SetStartAttributes();
         CalculateStartCharacteristics();
     }
@@ -83,6 +90,7 @@ public class Player : MonoBehaviour
         intelligence = classConfigSO.startIntelligence;
 
         moveSpeed = classConfigSO.moveSpeed;
+        level = 1;
     }
     private void CalculateStartCharacteristics()
     {
@@ -103,5 +111,15 @@ public class Player : MonoBehaviour
         health = maxHealth;
         mana = maxMana;
         stamina = maxStamina;
+    }
+    public void LevelUp()
+    {
+        level++;
+
+        strength += classConfigSO.strengthIncrement;
+        agility += classConfigSO.agilityIncrement;
+        intelligence += classConfigSO.intelligenceIncrement;
+
+        CalculateStartCharacteristics();
     }
 }

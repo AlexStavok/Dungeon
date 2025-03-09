@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ClassConfigSO classConfigSO;
     [SerializeField] private ÑharacteristicsConfigSO ñharacteristicsConfigSO;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform playerVisual;
 
     private void Start()
     {
@@ -56,8 +57,15 @@ public class Player : MonoBehaviour
     {
         Vector2 vector = InputManager.Instance.GetMovementVector();
 
+        if(vector.x > 0)
+        {
+            playerVisual.localScale = new Vector2(1, playerVisual.localScale.y);
+        }
+        if (vector.x < 0)
+        {
+            playerVisual.localScale = new Vector2(-1, playerVisual.localScale.y);
+        }
         rb.velocity = vector * moveSpeed;
-        //gameObject.transform.Translate(vector * movementSpeed * Time.deltaTime);
     }
 
     public void TakeDamage(Damage damage)

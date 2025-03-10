@@ -42,15 +42,29 @@ public class Player : MonoBehaviour
     [SerializeField] private ÑharacteristicsConfigSO ñharacteristicsConfigSO;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform playerVisual;
-    [SerializeField] private Transform weapon;
+    [SerializeField] private Transform handlePoint;
+    [SerializeField] private Animator weaponAnimator;
+
+
+
+    private bool canRotate = true;
 
 
     private void Start()
     {
         Instance = this;
+
+        InputManager.Instance.onPlayerAttack += InputSystem_onPlayerAttack;
+
         SetStartAttributes();
         CalculateStartCharacteristics();
     }
+
+    private void InputSystem_onPlayerAttack(object sender, System.EventArgs e)
+    {
+        weaponAnimator.SetTrigger("attack");
+    }
+
     void Update()
     {
         MovementHandler();
@@ -77,19 +91,22 @@ public class Player : MonoBehaviour
     }
     private void RotateWeapon()
     {
+        if (!canRotate)
+            return;
+
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
-        Vector3 direction = (mousePosition - weapon.transform.position).normalized;
+        Vector3 direction = (mousePosition - handlePoint.transform.position).normalized;
         float angle = 0;
         if (playerVisual.localScale.x == 1)
         {
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 30;
+            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         }
         if (playerVisual.localScale.x == -1)
         {
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 30 - 180;
+            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180;
         }
-        weapon.rotation = Quaternion.Euler(0, 0, angle);
+        handlePoint.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     public void TakeDamage(Damage damage)

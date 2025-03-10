@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
     [SerializeField] private ÑharacteristicsConfigSO ñharacteristicsConfigSO;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform playerVisual;
+    [SerializeField] private Transform weapon;
+
 
     private void Start()
     {
@@ -56,16 +58,38 @@ public class Player : MonoBehaviour
     private void MovementHandler()
     {
         Vector2 vector = InputManager.Instance.GetMovementVector();
+        RotatePlayer();
+        RotateWeapon();
+        rb.velocity = vector * moveSpeed;
+    }
 
-        if(vector.x > 0)
+    private void RotatePlayer()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (mousePosition.x > transform.position.x)
         {
             playerVisual.localScale = new Vector2(1, playerVisual.localScale.y);
         }
-        if (vector.x < 0)
+        if (mousePosition.x < transform.position.x)
         {
             playerVisual.localScale = new Vector2(-1, playerVisual.localScale.y);
         }
-        rb.velocity = vector * moveSpeed;
+    }
+    private void RotateWeapon()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0;
+        Vector3 direction = (mousePosition - weapon.transform.position).normalized;
+        float angle = 0;
+        if (playerVisual.localScale.x == 1)
+        {
+            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 30;
+        }
+        if (playerVisual.localScale.x == -1)
+        {
+            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 30 - 180;
+        }
+        weapon.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     public void TakeDamage(Damage damage)

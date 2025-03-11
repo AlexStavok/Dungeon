@@ -62,7 +62,7 @@ public class Player : MonoBehaviour, IDamageAble
 
     private void InputSystem_onPlayerAttack(object sender, System.EventArgs e)
     {
-        weapon.Attack();
+        weapon.StartAttackAnimation();
     }
 
     void Update()

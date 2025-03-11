@@ -7,10 +7,16 @@ public class Weapon : MonoBehaviour
     [Header("WeaponSettings")]
     [SerializeField] private WeaponType weaponType;
     [SerializeField] private Damage damage;
-    [SerializeField] private float attackRange;
 
+
+    [Header("Melle")]
     [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackPointRange;
+
+
+    [Header("Range")]
     [SerializeField] private Transform projectTile;
+
 
     [Header("Other")]
     [SerializeField] private Animator animator;
@@ -23,24 +29,36 @@ public class Weapon : MonoBehaviour
         Range
     }
 
-    public void Attack()
+    public void StartAttackAnimation()
     {
         animator.SetTrigger(attackTrigger);
     }
 
-    public void MelleAttack()
+    public void Attack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
-
-        foreach(Collider2D enemy in hitEnemies)
+        switch (weaponType)
         {
-            if (enemy.TryGetComponent<IDamagable>(out var damageable))
+            case WeaponType.Melle:
+                MelleAttack();
+                break;
+            case WeaponType.Range:
+                RangeAttack();
+                break;
+        }
+    }
+    private void MelleAttack()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackPointRange);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            if (enemy.TryGetComponent<IDamageAble>(out var damageable))
             {
                 damageable.TakeDamage(damage);
             }
         }
     }
-    public void RangeAttack()
+    private void RangeAttack()
     {
 
     }
@@ -49,6 +67,6 @@ public class Weapon : MonoBehaviour
         if (attackPoint == null) return;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, attackPointRange);
     }
 }

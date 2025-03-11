@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageAble
 {
     public static Player Instance;
 
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform playerVisual;
     [SerializeField] private Transform handlePoint;
-    [SerializeField] private Animator weaponAnimator;
+    [SerializeField] private Weapon weapon;
 
 
 
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
     private void InputSystem_onPlayerAttack(object sender, System.EventArgs e)
     {
-        weaponAnimator.SetTrigger("attack");
+        weapon.Attack();
     }
 
     void Update()

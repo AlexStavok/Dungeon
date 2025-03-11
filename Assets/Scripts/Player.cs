@@ -114,7 +114,7 @@ public class Player : MonoBehaviour, IDamageAble
         switch (damage.damageType)
         {
             case Damage.DamageType.Physical:
-                health -= (damage.damageAmount - blockingDamage) * (1 - armor);
+                health -= (damage.damageAmount - blockingDamage) * (1 - (armor/100));
                 break;
             case Damage.DamageType.Magical:
                 health -= damage.damageAmount* (1 - magicResistance);
@@ -126,6 +126,7 @@ public class Player : MonoBehaviour, IDamageAble
     {
         if(health <= 0)
         {
+            InputManager.Instance.onPlayerAttack -= InputSystem_onPlayerAttack;
             Destroy(gameObject);
         }
     }

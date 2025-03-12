@@ -12,6 +12,7 @@ public class Slime : MonoBehaviour, IDamageAble
     [SerializeField] private Damage damage;
     [SerializeField] private float moveSpeed; 
     [SerializeField] private float jumpForce;
+    [SerializeField] private LayerMask attackLayer;
 
 
     [Header("Other")]
@@ -44,7 +45,7 @@ public class Slime : MonoBehaviour, IDamageAble
         if (target != null)
             return;
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius, attackLayer);
         foreach (var collider in colliders)
         {
             if (collider.TryGetComponent<Player>(out var player))
@@ -124,7 +125,7 @@ public class Slime : MonoBehaviour, IDamageAble
 
     public void Attack()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, slimeRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, slimeRadius, attackLayer);
         foreach (var collider in colliders)
         {
             if (collider.gameObject == this.gameObject)

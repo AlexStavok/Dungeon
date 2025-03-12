@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     [Header("WeaponSettings")]
     [SerializeField] private WeaponType weaponType;
     [SerializeField] private Damage damage;
+    [SerializeField] private LayerMask attackLayer;
 
 
     [Header("Melle")]
@@ -48,7 +49,7 @@ public class Weapon : MonoBehaviour
     }
     private void MelleAttack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackPointRange);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackPointRange, attackLayer);
 
         foreach (Collider2D enemy in hitEnemies)
         {

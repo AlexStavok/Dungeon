@@ -431,6 +431,9 @@ MonoBehaviour:
   damage:
     damageType: 0
     damageAmount: 25
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
   attackPoint: {fileID: 2045848692}
   attackPointRange: 0.4
   projectTile: {fileID: 0}
@@ -516,7 +519,7 @@ GameObject:
   - component: {fileID: 201235489}
   - component: {fileID: 201235490}
   - component: {fileID: 201235488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,6 +635,9 @@ MonoBehaviour:
     damageAmount: 30
   moveSpeed: 2
   jumpForce: 5
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 64
   animator: {fileID: 201235485}
   rb: {fileID: 201235489}
 --- !u!50 &201235489
@@ -1439,7 +1445,7 @@ GameObject:
   - component: {fileID: 1487776533}
   - component: {fileID: 1487776534}
   - component: {fileID: 1487776532}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

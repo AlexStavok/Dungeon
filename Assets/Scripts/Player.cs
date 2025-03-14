@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour, IDamageAble
 {
@@ -14,8 +16,8 @@ public class Player : MonoBehaviour, IDamageAble
 
 
     [Header("Ñharacteristics")]
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float health;
+    [SerializeField] public float maxHealth;
+    [SerializeField] public float health;
     [SerializeField] private float maxMana;
     [SerializeField] private float mana;
     [SerializeField] private float maxStamina;
@@ -50,10 +52,15 @@ public class Player : MonoBehaviour, IDamageAble
     private bool canRotate = true;
 
 
-    private void Start()
+    public event EventHandler OnHealthChanged;
+
+    private void Awake()
     {
         Instance = this;
+    }
 
+    private void Start()
+    {
         InputManager.Instance.onPlayerAttack += InputSystem_onPlayerAttack;
 
         SetStartAttributes();
@@ -114,13 +121,14 @@ public class Player : MonoBehaviour, IDamageAble
         switch (damage.damageType)
         {
             case Damage.DamageType.Physical:
-                health -= (damage.damageAmount - blockingDamage) * (1 - (armor/100));
+                health -= (float)Math.Round((damage.damageAmount - blockingDamage) * (1 - (armor / 100)), 1);
                 break;
             case Damage.DamageType.Magical:
-                health -= damage.damageAmount* (1 - magicResistance);
+                health -= (float)Math.Round(damage.damageAmount * (1 - magicResistance), 1);
                 break;
         }
         DeathHandler();
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
     }
     private void DeathHandler()
     {
@@ -161,6 +169,8 @@ public class Player : MonoBehaviour, IDamageAble
         health = maxHealth;
         mana = maxMana;
         stamina = maxStamina;
+
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
     }
     public void LevelUp()
     {

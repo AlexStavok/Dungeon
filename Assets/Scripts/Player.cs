@@ -18,10 +18,10 @@ public class Player : MonoBehaviour, IDamageAble
     [Header("Ñharacteristics")]
     [SerializeField] public float maxHealth;
     [SerializeField] public float health;
-    [SerializeField] private float maxMana;
-    [SerializeField] private float mana;
-    [SerializeField] private float maxStamina;
-    [SerializeField] private float stamina;
+    [SerializeField] public float maxMana;
+    [SerializeField] public float mana;
+    [SerializeField] public float maxStamina;
+    [SerializeField] public float stamina;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float magicPower;
     [SerializeField] private float blockingDamage;
@@ -30,7 +30,11 @@ public class Player : MonoBehaviour, IDamageAble
     [SerializeField] private float effectsResistance;
 
     [Space(5)]
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float baseMoveSpeed;
+    [SerializeField] private float runSpeedMultiplier;
+    [SerializeField] private float staminaDrainRate;
+    [SerializeField] private float staminaRegenRate;
+    private float currentMoveSpeed;
 
 
     [Header("Level")]
@@ -50,9 +54,13 @@ public class Player : MonoBehaviour, IDamageAble
 
 
     private bool canRotate = true;
+    private bool canRun = true;
+    private bool isRunning = false;
 
 
     public event EventHandler OnHealthChanged;
+    public event EventHandler OnManaChanged;
+    public event EventHandler OnStaminaChanged;
 
     private void Awake()
     {
@@ -61,13 +69,37 @@ public class Player : MonoBehaviour, IDamageAble
 
     private void Start()
     {
-        InputManager.Instance.onPlayerAttack += InputSystem_onPlayerAttack;
+        InputManager.Instance.OnPlayerAttack += InputSystem_OnPlayerAttack;
+        InputManager.Instance.OnPlayerStartRun += InputManager_OnPlayerStartRun;
+        InputManager.Instance.OnPlayerStopRun += InputManager_OnPlayerStopRun;
+
+
 
         SetStartAttributes();
         CalculateStartCharacteristics();
     }
 
-    private void InputSystem_onPlayerAttack(object sender, System.EventArgs e)
+    private void InputManager_OnPlayerStopRun(object sender, EventArgs e)
+    {
+        StopRunning();
+    }
+    private void StopRunning()
+    {
+        currentMoveSpeed = baseMoveSpeed;
+        isRunning = false;
+
+    }
+
+    private void InputManager_OnPlayerStartRun(object sender, EventArgs e)
+    {
+        if (!canRun)
+            return;
+
+        currentMoveSpeed = baseMoveSpeed * runSpeedMultiplier;
+        isRunning = true;
+    }
+
+    private void InputSystem_OnPlayerAttack(object sender, System.EventArgs e)
     {
         weapon.StartAttackAnimation();
     }
@@ -75,13 +107,38 @@ public class Player : MonoBehaviour, IDamageAble
     void Update()
     {
         MovementHandler();
+        RotatePlayer();
+        RotateWeapon();
     }
     private void MovementHandler()
     {
         Vector2 vector = InputManager.Instance.GetMovementVector();
-        RotatePlayer();
-        RotateWeapon();
-        rb.velocity = vector * moveSpeed;
+        StaminaHandler();
+        rb.velocity = vector * currentMoveSpeed;
+    }
+
+    private void StaminaHandler()
+    {
+        if (isRunning)
+        {
+            stamina -= staminaDrainRate * Time.deltaTime;
+            stamina = Mathf.Max(stamina, 0);
+
+            if (stamina <= 0)
+            {
+                StopRunning();
+                canRun = false;
+            }
+        }
+        else
+        {
+            stamina += staminaRegenRate * Time.deltaTime;
+            stamina = Mathf.Min(stamina, maxStamina);
+            if (stamina >= maxStamina * 0.3f)
+                canRun = true;
+        }
+
+        OnStaminaChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void RotatePlayer()
@@ -121,10 +178,13 @@ public class Player : MonoBehaviour, IDamageAble
         switch (damage.damageType)
         {
             case Damage.DamageType.Physical:
-                health -= (float)Math.Round((damage.damageAmount - blockingDamage) * (1 - (armor / 100)), 1);
+                float finalDamage = Math.Max(0, (damage.damageAmount - blockingDamage) * (1 - (armor / 100)));
+                health -= (float)Math.Round(finalDamage, 1);
+                health = (float)Math.Round(health, 1);
                 break;
             case Damage.DamageType.Magical:
                 health -= (float)Math.Round(damage.damageAmount * (1 - magicResistance), 1);
+                health = (float)Math.Round(health, 1);
                 break;
         }
         DeathHandler();
@@ -134,7 +194,7 @@ public class Player : MonoBehaviour, IDamageAble
     {
         if(health <= 0)
         {
-            InputManager.Instance.onPlayerAttack -= InputSystem_onPlayerAttack;
+            InputManager.Instance.OnPlayerAttack -= InputSystem_OnPlayerAttack;
             Destroy(gameObject);
         }
     }
@@ -147,7 +207,8 @@ public class Player : MonoBehaviour, IDamageAble
         agility = classConfigSO.startAgility;
         intelligence = classConfigSO.startIntelligence;
 
-        moveSpeed = classConfigSO.moveSpeed;
+        baseMoveSpeed = classConfigSO.moveSpeed;
+        currentMoveSpeed = baseMoveSpeed;
         level = 1;
     }
     private void CalculateStartCharacteristics()
@@ -171,6 +232,8 @@ public class Player : MonoBehaviour, IDamageAble
         stamina = maxStamina;
 
         OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        OnManaChanged?.Invoke(this, EventArgs.Empty);
+        OnStaminaChanged?.Invoke(this, EventArgs.Empty);
     }
     public void LevelUp()
     {

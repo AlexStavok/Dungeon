@@ -74,7 +74,6 @@ public class Player : MonoBehaviour, IDamageAble
 
     private void Start()
     {
-        InputManager.Instance.OnPlayerAttack += InputSystem_OnPlayerAttack;
         InputManager.Instance.OnPlayerStartRun += InputManager_OnPlayerStartRun;
         InputManager.Instance.OnPlayerStopRun += InputManager_OnPlayerStopRun;
     }
@@ -96,11 +95,6 @@ public class Player : MonoBehaviour, IDamageAble
 
         currentMoveSpeed = baseMoveSpeed * runSpeedMultiplier;
         isRunning = true;
-    }
-
-    private void InputSystem_OnPlayerAttack(object sender, System.EventArgs e)
-    {
-        weapon.StartAttackAnimation();
     }
 
     void Update()
@@ -252,7 +246,8 @@ public class Player : MonoBehaviour, IDamageAble
     {
         if(health <= 0)
         {
-            InputManager.Instance.OnPlayerAttack -= InputSystem_OnPlayerAttack;
+            InputManager.Instance.OnPlayerStartRun -= InputManager_OnPlayerStartRun;
+            InputManager.Instance.OnPlayerStopRun -= InputManager_OnPlayerStopRun;
             Destroy(gameObject);
         }
     }

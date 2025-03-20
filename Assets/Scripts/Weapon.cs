@@ -22,7 +22,9 @@ public class Weapon : MonoBehaviour
     [Header("Other")]
     [SerializeField] private Animator animator;
 
+
     private const string attackTrigger = "attack";
+    private bool isAttacking = false;
 
     public enum WeaponType
     {
@@ -30,6 +32,28 @@ public class Weapon : MonoBehaviour
         Range
     }
 
+    private void Start()
+    {
+        InputManager.Instance.OnPlayerAttack += InputManager_OnPlayerAttack;
+    }
+
+    private void InputManager_OnPlayerAttack(object sender, System.EventArgs e)
+    {
+        if(!isAttacking)
+        {
+            StartCoroutine(AttackRoutine());
+        }
+    }
+    private IEnumerator AttackRoutine()
+    {
+        isAttacking = true; // Блокуємо повторний удар
+        animator.SetTrigger(attackTrigger);
+
+        // Чекаємо поки анімація завершиться
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        isAttacking = false; // Дозволяємо атакувати знову
+    }
     public void StartAttackAnimation()
     {
         animator.SetTrigger(attackTrigger);
@@ -69,5 +93,9 @@ public class Weapon : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackPointRange);
+    }
+    private void OnDestroy()
+    {
+        InputManager.Instance.OnPlayerAttack -= InputManager_OnPlayerAttack;
     }
 }

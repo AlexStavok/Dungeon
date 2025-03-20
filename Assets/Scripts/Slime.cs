@@ -13,6 +13,7 @@ public class Slime : MonoBehaviour, IDamageAble
     [SerializeField] private float moveSpeed; 
     [SerializeField] private float jumpForce;
     [SerializeField] private LayerMask attackLayer;
+    [SerializeField] private float delayBetweenAttacks;
 
 
     [Header("Other")]
@@ -23,17 +24,16 @@ public class Slime : MonoBehaviour, IDamageAble
 
     private const string AttackTrigger = "Attack";
     private const string SeeEnemyBool = "SeeEnemy";
-
     private Transform target;
-
     private Stages stage = Stages.Idle;
+    private bool canAttack = true;
+
     private enum Stages
     {
         Idle,
         Move,
         Attack
     }
-
 
     private void Start()
     {
@@ -93,9 +93,12 @@ public class Slime : MonoBehaviour, IDamageAble
         float distance = Vector2.Distance(transform.position, target.position);
         if (distance <= attackRadius)
         {
-            stage = Stages.Attack;
-            animator.SetBool(SeeEnemyBool, false);
-            animator.SetTrigger(AttackTrigger);
+            if (canAttack)
+            {
+                stage = Stages.Attack;
+                animator.SetBool(SeeEnemyBool, false);
+                animator.SetTrigger(AttackTrigger);
+            }
         }
         else
         {
@@ -137,6 +140,16 @@ public class Slime : MonoBehaviour, IDamageAble
             }
         }
         stage = Stages.Idle;
+        StartCoroutine(ExecuteDelayBetweenAttacks());
+    }
+
+    private IEnumerator ExecuteDelayBetweenAttacks()
+    {
+        canAttack = false;
+
+        yield return new WaitForSeconds(delayBetweenAttacks);
+
+        canAttack = true;
     }
 
     void OnDrawGizmosSelected()

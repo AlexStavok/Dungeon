@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "NewPlayerСharacteristicsConfig", menuName = "ScriptableObjects/PlayerСharacteristicsConfig")]
+[CreateAssetMenu(fileName = "NewPlayerСharacteristicsConfigSO", menuName = "ScriptableObjects/PlayerСharacteristicsConfigSO")]
 public class PlayerСharacteristicsConfigSO : ScriptableObject
 {
     [Header("StartAttributes")]

@@ -112,7 +112,7 @@ public class Slime : MonoBehaviour, IDamageAble
             animator.SetBool(SeeEnemyBool, false);
         }
     }
-    private void JumpToTarget()
+    public void JumpToTarget()
     {
         Vector2 moveVector = target.position - transform.position;
 

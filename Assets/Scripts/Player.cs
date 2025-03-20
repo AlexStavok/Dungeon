@@ -44,18 +44,19 @@ public class Player : MonoBehaviour, IDamageAble
 
 
     [Header("Other")]
-    [SerializeField] private ClassConfigSO classConfigSO;
-    [SerializeField] private —haracteristicsConfigSO ÒharacteristicsConfigSO;
+    [SerializeField] private Player—haracteristicsConfigSO ÒharacteristicsConfigSO;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform playerVisual;
     [SerializeField] private Transform handlePoint;
     [SerializeField] private Weapon weapon;
-
+    [SerializeField] private float detectionRadius;
+    [SerializeField] private LayerMask enemyLayer;
 
 
     private bool canRotate = true;
     private bool canRun = true;
     private bool isRunning = false;
+    private Transform targetEnemy;
 
 
     public event EventHandler OnHealthChanged;
@@ -65,6 +66,10 @@ public class Player : MonoBehaviour, IDamageAble
     private void Awake()
     {
         Instance = this;
+
+
+        SetStartAttributes();
+        CalculateStartCharacteristics();
     }
 
     private void Start()
@@ -72,11 +77,6 @@ public class Player : MonoBehaviour, IDamageAble
         InputManager.Instance.OnPlayerAttack += InputSystem_OnPlayerAttack;
         InputManager.Instance.OnPlayerStartRun += InputManager_OnPlayerStartRun;
         InputManager.Instance.OnPlayerStopRun += InputManager_OnPlayerStopRun;
-
-
-
-        SetStartAttributes();
-        CalculateStartCharacteristics();
     }
 
     private void InputManager_OnPlayerStopRun(object sender, EventArgs e)
@@ -87,7 +87,6 @@ public class Player : MonoBehaviour, IDamageAble
     {
         currentMoveSpeed = baseMoveSpeed;
         isRunning = false;
-
     }
 
     private void InputManager_OnPlayerStartRun(object sender, EventArgs e)
@@ -106,9 +105,39 @@ public class Player : MonoBehaviour, IDamageAble
 
     void Update()
     {
+        DetectClosestEnemy();
         MovementHandler();
         RotatePlayer();
         RotateWeapon();
+    }
+
+    private void DetectClosestEnemy()
+    {
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, detectionRadius, enemyLayer);
+        float minDistance = Mathf.Infinity;
+        Transform closestEnemy = null;
+
+        if (enemies.Length <= 0)
+        {
+            targetEnemy = null;
+            return;
+        }
+
+        foreach (Collider2D enemy in enemies)
+        {
+            float distance = Vector2.Distance(transform.position, enemy.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestEnemy = enemy.transform;
+            }
+        }
+
+        targetEnemy = closestEnemy;
+    }
+    private bool HasTarget()
+    {
+        return targetEnemy != null;
     }
     private void MovementHandler()
     {
@@ -143,14 +172,32 @@ public class Player : MonoBehaviour, IDamageAble
 
     private void RotatePlayer()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePosition.x > transform.position.x)
+        if(HasTarget())
         {
-            playerVisual.localScale = new Vector2(1, playerVisual.localScale.y);
+            if(targetEnemy.position.x < gameObject.transform.position.x)
+            {
+                playerVisual.localScale = new Vector2(-1, playerVisual.localScale.y);
+            }
+            else
+            {
+                playerVisual.localScale = new Vector2(1, playerVisual.localScale.y);
+            }
         }
-        if (mousePosition.x < transform.position.x)
+        else
         {
-            playerVisual.localScale = new Vector2(-1, playerVisual.localScale.y);
+            Vector2 direction = rb.velocity.normalized;
+
+            if (direction == Vector2.zero)
+                return;
+
+            if (direction.x > 0)
+            {
+                playerVisual.localScale = new Vector2(1, playerVisual.localScale.y);
+            }
+            if (direction.x < 0)
+            {
+                playerVisual.localScale = new Vector2(-1, playerVisual.localScale.y);
+            }
         }
     }
     private void RotateWeapon()
@@ -158,9 +205,20 @@ public class Player : MonoBehaviour, IDamageAble
         if (!canRotate)
             return;
 
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0;
-        Vector3 direction = (mousePosition - handlePoint.transform.position).normalized;
+        Vector2 direction = Vector2.zero;
+
+        if (HasTarget())
+        {
+            direction = (targetEnemy.position - handlePoint.transform.position).normalized;
+        }
+        else
+        {
+            direction = rb.velocity.normalized;
+        }
+
+        if (direction == Vector2.zero)
+            return;
+
         float angle = 0;
         if (playerVisual.localScale.x == 1)
         {
@@ -201,13 +259,13 @@ public class Player : MonoBehaviour, IDamageAble
 
     private void SetStartAttributes()
     {
-        if (classConfigSO == null)
+        if (ÒharacteristicsConfigSO == null)
             return;
-        strength = classConfigSO.startStrength;
-        agility = classConfigSO.startAgility;
-        intelligence = classConfigSO.startIntelligence;
+        strength = ÒharacteristicsConfigSO.startStrength;
+        agility = ÒharacteristicsConfigSO.startAgility;
+        intelligence = ÒharacteristicsConfigSO.startIntelligence;
 
-        baseMoveSpeed = classConfigSO.moveSpeed;
+        baseMoveSpeed = ÒharacteristicsConfigSO.moveSpeed;
         currentMoveSpeed = baseMoveSpeed;
         level = 1;
     }
@@ -239,10 +297,15 @@ public class Player : MonoBehaviour, IDamageAble
     {
         level++;
 
-        strength += classConfigSO.strengthIncrement;
-        agility += classConfigSO.agilityIncrement;
-        intelligence += classConfigSO.intelligenceIncrement;
+        strength += ÒharacteristicsConfigSO.strengthIncrement;
+        agility += ÒharacteristicsConfigSO.agilityIncrement;
+        intelligence += ÒharacteristicsConfigSO.intelligenceIncrement;
 
         CalculateStartCharacteristics();
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(gameObject.transform.position, detectionRadius);
     }
 }

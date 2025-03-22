@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Player : MonoBehaviour, IDamageAble
+public class Player : MonoBehaviour, IDamageable
 {
     public static Player Instance;
 
@@ -51,6 +51,7 @@ public class Player : MonoBehaviour, IDamageAble
     [SerializeField] private Weapon weapon;
     [SerializeField] private float detectionRadius;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private float interactRadius;
 
 
     private bool canRotate = true;
@@ -62,6 +63,8 @@ public class Player : MonoBehaviour, IDamageAble
     public event EventHandler OnHealthChanged;
     public event EventHandler OnManaChanged;
     public event EventHandler OnStaminaChanged;
+    public event EventHandler OnAttackReady;
+    public event EventHandler OnInteractReady;
 
     private void Awake()
     {
@@ -76,6 +79,23 @@ public class Player : MonoBehaviour, IDamageAble
     {
         InputManager.Instance.OnPlayerStartRun += InputManager_OnPlayerStartRun;
         InputManager.Instance.OnPlayerStopRun += InputManager_OnPlayerStopRun;
+        InputManager.Instance.OnPlayerInteract += InputManager_OnPlayerInteract;
+    }
+
+    private void InputManager_OnPlayerInteract(object sender, EventArgs e)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactRadius);
+        foreach (var collider in colliders)
+        {
+            if (collider.gameObject == this.gameObject)
+                continue;
+
+            if (collider.TryGetComponent<IInteractable>(out var interactable))
+            {
+                interactable.Interact();
+                break;
+            }
+        }
     }
 
     private void InputManager_OnPlayerStopRun(object sender, EventArgs e)
@@ -99,10 +119,29 @@ public class Player : MonoBehaviour, IDamageAble
 
     void Update()
     {
+        CheckForInteractableAround();
         DetectClosestEnemy();
         MovementHandler();
         RotatePlayer();
         RotateWeapon();
+    }
+
+    private void CheckForInteractableAround()
+    {
+        OnAttackReady?.Invoke(this, EventArgs.Empty);
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactRadius);
+        foreach (var collider in colliders)
+        {
+            if (collider.gameObject == this.gameObject)
+                continue;
+
+            if (collider.TryGetComponent<IInteractable>(out var interactable))
+            {
+                OnInteractReady?.Invoke(this, EventArgs.Empty);
+                break;
+            }
+        }
     }
 
     private void DetectClosestEnemy()
@@ -302,5 +341,7 @@ public class Player : MonoBehaviour, IDamageAble
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(gameObject.transform.position, detectionRadius);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(gameObject.transform.position, interactRadius);
     }
 }

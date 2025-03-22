@@ -77,7 +77,7 @@ public class Weapon : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.TryGetComponent<IDamageAble>(out var damageable))
+            if (enemy.TryGetComponent<IDamageable>(out var damageable))
             {
                 damageable.TakeDamage(damage);
             }

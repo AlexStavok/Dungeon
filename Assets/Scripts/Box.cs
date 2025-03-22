@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : MonoBehaviour, IDamageAble
+public class Box : MonoBehaviour, IDamageable
 {
     private float HP = 100;
     public void TakeDamage(Damage damage)

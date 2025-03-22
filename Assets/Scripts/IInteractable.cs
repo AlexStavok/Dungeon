@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable
+public interface IInteractable
 {
-    public void TakeDamage(Damage damage);
+    public void Interact();
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : MonoBehaviour, IDamageAble
+public class Slime : MonoBehaviour, IDamageable
 {
     [Header("Settings")]
     [SerializeField] private float health;
@@ -134,7 +134,7 @@ public class Slime : MonoBehaviour, IDamageAble
             if (collider.gameObject == this.gameObject)
                 continue;
 
-            if (collider.TryGetComponent<IDamageAble>(out var damageable))
+            if (collider.TryGetComponent<IDamageable>(out var damageable))
             {
                 damageable.TakeDamage(damage);
             }

@@ -6,61 +6,44 @@ using UnityEngine;
 
 public class DialogueUI : MonoBehaviour
 {
-    public TextMeshProUGUI textComponent;
-    public string[] lines;
-    public float textSpeed;
+    [SerializeField] private TextMeshProUGUI textComponent;
+    [SerializeField] private float textSpeed;
 
-    private int index;
+    private string sentance;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Show()
     {
+        gameObject.SetActive(true);
+    }
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void TypeSentance(string sentanceToType)
+    {
+        sentance = sentanceToType;
         textComponent.text = string.Empty;
-        StartDialogue();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if(textComponent.text == lines[index])
-            {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                textComponent.text = lines[index];
-            }
-        }
-    }
-
-    void StartDialogue()
-    {
-        index = 0;
         StartCoroutine(TypeLine());
     }
 
-    IEnumerator TypeLine()
+    private IEnumerator TypeLine()
     {
-        foreach(char c in lines[index].ToCharArray())
+        foreach (char c in sentance.ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
     }
-    void NextLine()
+
+    public void ShowFullText()
     {
-        if(index < lines.Length - 1)
-        {
-            index++;
-            textComponent.text = string.Empty;
-            StartCoroutine(TypeLine());
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
+        StopAllCoroutines();
+        textComponent.text = sentance;
+    }
+
+    public bool IsLineTyped()
+    {
+        return textComponent.text == sentance;
     }
 }

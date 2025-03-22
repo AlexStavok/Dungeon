@@ -6,7 +6,5 @@ using UnityEngine;
 [System.Serializable]
 public class DialogueSO : ScriptableObject
 {
-    public Dialogue dialogue;
-
-    public DialogueOption[] dialogueOptions;
+    [TextArea(3,5)] public string[] sentances;
 }

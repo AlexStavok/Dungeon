@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     public event EventHandler OnPlayerAttack;
     public event EventHandler OnPlayerStartRun;
     public event EventHandler OnPlayerStopRun;
+    public event EventHandler OnPlayerInteract;
 
     private PlayerActions playerActions;
 
@@ -24,7 +25,15 @@ public class InputManager : MonoBehaviour
 
         playerActions.PlayerActionMap.Run.performed += Run_performed;
         playerActions.PlayerActionMap.Run.canceled += Run_canceled;
+
+        playerActions.PlayerActionMap.Interact.performed += Interact_performed;
     }
+
+    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnPlayerInteract?.Invoke(this, EventArgs.Empty);
+    }
+
     private void Run_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnPlayerStartRun?.Invoke(this, EventArgs.Empty);

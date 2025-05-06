@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
+    [SerializeField] private BoxCollider2D collier;
     public void OpenDoor()
     {
-        gameObject.SetActive(false);
+        animator.SetTrigger("Open");
+        collier.enabled = false;
     }
 
     public void CloseDoor()
     {
-        gameObject.SetActive(true);
+        animator.SetTrigger("Close");
+        collier.enabled = true;
     }
 
 }

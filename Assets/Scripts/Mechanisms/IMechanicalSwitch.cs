@@ -1,12 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public interface Switch
+public interface IMechanicalSwitch
 {
-
-    void On();
-
-    void Off();
+    public bool isActive { get; }
 }

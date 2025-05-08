@@ -337,6 +337,25 @@ public class Player : MonoBehaviour, IDamageable
 
         CalculateStartCharacteristics();
     }
+    public void AddHeal(float amount)
+    {
+        health += amount;
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
+    }
+    public void AddMana(float amount)
+    {
+        mana += amount;
+        if (mana > maxMana)
+        {
+            mana = maxMana;
+        }
+        OnManaChanged?.Invoke(this, EventArgs.Empty);
+
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

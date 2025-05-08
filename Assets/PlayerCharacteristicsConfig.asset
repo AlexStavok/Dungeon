@@ -15,7 +15,7 @@ MonoBehaviour:
   startStrength: 5
   startAgility: 3
   startIntelligence: 2
-  moveSpeed: 5
+  moveSpeed: 4
   strengthIncrement: 3
   agilityIncrement: 2.3
   intelligenceIncrement: 1.5

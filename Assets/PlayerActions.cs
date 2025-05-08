@@ -62,6 +62,33 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FirstPotion"",
+                    ""type"": ""Button"",
+                    ""id"": ""95a9deec-aa40-4027-ab6a-6f504a8164da"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondPotion"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f32867d-a1bb-4bec-93ab-0cf8f3988deb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThirdPotion"",
+                    ""type"": ""Button"",
+                    ""id"": ""40af719c-3cf6-429f-a06d-a058da923c6c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -174,6 +201,39 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""161d3efc-7e59-44eb-b792-0276ceefca02"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FirstPotion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07a65dd4-2bc4-4ceb-aa98-e371397f915d"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondPotion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66e2232b-e54e-42e0-a305-9c0e84359abd"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThirdPotion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -186,6 +246,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_PlayerActionMap_Attack = m_PlayerActionMap.FindAction("Attack", throwIfNotFound: true);
         m_PlayerActionMap_Run = m_PlayerActionMap.FindAction("Run", throwIfNotFound: true);
         m_PlayerActionMap_Interact = m_PlayerActionMap.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerActionMap_FirstPotion = m_PlayerActionMap.FindAction("FirstPotion", throwIfNotFound: true);
+        m_PlayerActionMap_SecondPotion = m_PlayerActionMap.FindAction("SecondPotion", throwIfNotFound: true);
+        m_PlayerActionMap_ThirdPotion = m_PlayerActionMap.FindAction("ThirdPotion", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +314,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_Attack;
     private readonly InputAction m_PlayerActionMap_Run;
     private readonly InputAction m_PlayerActionMap_Interact;
+    private readonly InputAction m_PlayerActionMap_FirstPotion;
+    private readonly InputAction m_PlayerActionMap_SecondPotion;
+    private readonly InputAction m_PlayerActionMap_ThirdPotion;
     public struct PlayerActionMapActions
     {
         private @PlayerActions m_Wrapper;
@@ -259,6 +325,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_PlayerActionMap_Attack;
         public InputAction @Run => m_Wrapper.m_PlayerActionMap_Run;
         public InputAction @Interact => m_Wrapper.m_PlayerActionMap_Interact;
+        public InputAction @FirstPotion => m_Wrapper.m_PlayerActionMap_FirstPotion;
+        public InputAction @SecondPotion => m_Wrapper.m_PlayerActionMap_SecondPotion;
+        public InputAction @ThirdPotion => m_Wrapper.m_PlayerActionMap_ThirdPotion;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -280,6 +349,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @FirstPotion.started += instance.OnFirstPotion;
+            @FirstPotion.performed += instance.OnFirstPotion;
+            @FirstPotion.canceled += instance.OnFirstPotion;
+            @SecondPotion.started += instance.OnSecondPotion;
+            @SecondPotion.performed += instance.OnSecondPotion;
+            @SecondPotion.canceled += instance.OnSecondPotion;
+            @ThirdPotion.started += instance.OnThirdPotion;
+            @ThirdPotion.performed += instance.OnThirdPotion;
+            @ThirdPotion.canceled += instance.OnThirdPotion;
         }
 
         private void UnregisterCallbacks(IPlayerActionMapActions instance)
@@ -296,6 +374,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @FirstPotion.started -= instance.OnFirstPotion;
+            @FirstPotion.performed -= instance.OnFirstPotion;
+            @FirstPotion.canceled -= instance.OnFirstPotion;
+            @SecondPotion.started -= instance.OnSecondPotion;
+            @SecondPotion.performed -= instance.OnSecondPotion;
+            @SecondPotion.canceled -= instance.OnSecondPotion;
+            @ThirdPotion.started -= instance.OnThirdPotion;
+            @ThirdPotion.performed -= instance.OnThirdPotion;
+            @ThirdPotion.canceled -= instance.OnThirdPotion;
         }
 
         public void RemoveCallbacks(IPlayerActionMapActions instance)
@@ -319,5 +406,8 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnFirstPotion(InputAction.CallbackContext context);
+        void OnSecondPotion(InputAction.CallbackContext context);
+        void OnThirdPotion(InputAction.CallbackContext context);
     }
 }

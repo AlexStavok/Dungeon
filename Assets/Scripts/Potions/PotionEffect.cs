@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PotionEffect : MonoBehaviour
+public abstract class PotionEffect
 {
-    public string effectName;
-
-    public abstract void ApplyEffect(Player player);
+    public abstract void ApplyEffect();
 }

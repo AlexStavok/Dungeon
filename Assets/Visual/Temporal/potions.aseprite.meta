@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638823194306871592
+  platformSettingsDirtyTick: 638826545071012362
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,16 +123,16 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: potions
     originalName: 
-    pivot: {x: 0.48888892, y: -0.07692308}
+    pivot: {x: 0.49180326, y: -0.07692308}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 45
+      width: 61
       height: 13
-    spriteID: c62fc4fbdf5b51441a41a94261ce6532
+    spriteID: e7e6a30e8504a374086298c1477999bc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,7 +153,7 @@ ScriptedImporter:
       y: 4
       width: 13
       height: 13
-    spriteID: 99855cf851142fa4bbefbc71deea0746
+    spriteID: 0801a753e186da74282806d382566582
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -173,7 +173,7 @@ ScriptedImporter:
       y: 4
       width: 13
       height: 13
-    spriteID: 6e21b8991528dda45a3040b7198a21ab
+    spriteID: c49bc88be063a1e44a23bae4b8436ee7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -193,7 +193,27 @@ ScriptedImporter:
       y: 4
       width: 13
       height: 13
-    spriteID: 7f44dad36ddb8184db6363ce36b7fad2
+    spriteID: a7d63d810bf9d5149b90b6c8a241cbbe
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: potions_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 52
+      y: 4
+      width: 13
+      height: 13
+    spriteID: 3df71a8edd48bd942a89710a5e15cc8c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -216,9 +236,9 @@ ScriptedImporter:
       cellRect:
         x: 2
         y: 1
-        width: 45
+        width: 61
         height: 13
-      spriteId: c62fc4fbdf5b51441a41a94261ce6532
+      spriteId: e7e6a30e8504a374086298c1477999bc
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -261,4 +281,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 48, y: 16}
+  canvasSize: {x: 64, y: 16}

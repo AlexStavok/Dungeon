@@ -15,10 +15,6 @@ public class InputManager : MonoBehaviour
 
     public event EventHandler OnPlayerInteract;
 
-    public event EventHandler OnUsingFirstPotion;
-    public event EventHandler OnUsingSecondPotion;
-    public event EventHandler OnUsingThirdPotion;
-
     private PlayerActions playerActions;
 
     private void Awake()
@@ -33,25 +29,6 @@ public class InputManager : MonoBehaviour
         playerActions.PlayerActionMap.Run.canceled += Run_canceled;
 
         playerActions.PlayerActionMap.Interact.performed += Interact_performed;
-
-        playerActions.PlayerActionMap.FirstPotion.performed += FirstPotion_performed;
-        playerActions.PlayerActionMap.SecondPotion.performed += SecondPotion_performed;
-        playerActions.PlayerActionMap.ThirdPotion.performed += ThirdPotion_performed;
-    }
-
-    private void FirstPotion_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnUsingFirstPotion?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void SecondPotion_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnUsingSecondPotion?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void ThirdPotion_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnUsingThirdPotion?.Invoke(this, EventArgs.Empty);
     }
 
 

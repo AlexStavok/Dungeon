@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class StandartManaPotion : PotionEffect
 {
-    [SerializeField] private float manaAmount = 50;
-    public override void ApplyEffect(Player player)
+    [SerializeField] private float manaAmount;
+
+    public StandartManaPotion(float manaAmount)
     {
-        player.AddMana(manaAmount);
+        this.manaAmount = manaAmount;
+    }
+    public override void ApplyEffect()
+    {
+        Player.Instance.AddMana(manaAmount);
     }
 
 }

@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class StandartHealPotion : PotionEffect
 {
-    [SerializeField] private float healAmount = 50;
-    public override void ApplyEffect(Player player)
+    [SerializeField] private float healAmount;
+
+    public StandartHealPotion(float healAmount)
     {
-        player.AddHeal(healAmount);
+        this.healAmount = healAmount;
+    }
+    public override void ApplyEffect()
+    {
+        Player.Instance.AddHeal(healAmount);
     }
 
 }

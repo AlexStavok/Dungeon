@@ -34,7 +34,7 @@ AnimatorState:
   m_PrefabAsset: {fileID: 0}
   m_Name: SlimeIdleAnimation
   m_Speed: 1
-  m_CycleOffset: 0
+  m_CycleOffset: 1
   m_Transitions:
   - {fileID: 8328195217946041727}
   m_StateMachineBehaviours: []

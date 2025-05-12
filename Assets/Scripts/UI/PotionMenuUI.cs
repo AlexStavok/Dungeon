@@ -37,7 +37,7 @@ public class PotionMenuUI : MonoBehaviour
             standartHealPotion.ApplyEffect();
 
             healPotionAmount -= 1;
-            UpdatePotionTexts();
+            UpdatePotionUI();
         });
         manaButton.onClick.AddListener(() =>
         {
@@ -48,7 +48,7 @@ public class PotionMenuUI : MonoBehaviour
             standartManaPotion.ApplyEffect();
 
             manaPotionAmount -= 1;
-            UpdatePotionTexts();
+            UpdatePotionUI();
         });
     }
 
@@ -56,12 +56,15 @@ public class PotionMenuUI : MonoBehaviour
     {
         healPotionAmount = maxHealPotionAmount;
         manaPotionAmount = maxManaPotionAmount;
-        UpdatePotionTexts();
+        UpdatePotionUI();
     }
 
-    private void UpdatePotionTexts()
+    private void UpdatePotionUI()
     {
         healPotionAmountText.text = healPotionAmount.ToString();
         manaPotionAmountText.text = manaPotionAmount.ToString();
+
+        healButton.image.sprite = healPotionAmount > 0 ? healPotionSprite : emptyPotionSprite;
+        manaButton.image.sprite = manaPotionAmount > 0 ? manaPotionSprite : emptyPotionSprite;
     }
 }

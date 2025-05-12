@@ -6,9 +6,9 @@ public class SlimeAnimator : MonoBehaviour
 {
     [SerializeField] private Slime slime;
 
-    public void Attack()
+    public void CauseDamage()
     {
-        slime.Attack();
+        slime.CauseDamage();
     }
     public void JumoToTarget()
     {

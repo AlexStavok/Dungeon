@@ -793,7 +793,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -998035276709187157, guid: 06e0cbeffb95ae947b5284af584268bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -940,10 +940,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1010502122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4333494, y: 0.08333466}
-  m_AnchorMax: {x: 0.916672, y: 0.5753758}
-  m_AnchoredPosition: {x: -0.076999664, y: 0.31349945}
-  m_SizeDelta: {x: 0.25090027, y: 0.120700836}
+  m_AnchorMin: {x: 0.63332534, y: 0.08333466}
+  m_AnchorMax: {x: 0.916672, y: 0.5}
+  m_AnchoredPosition: {x: 0.00800705, y: 0.12749863}
+  m_SizeDelta: {x: 0.080999374, y: -0.25129986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &217230529
 MonoBehaviour:
@@ -21972,14 +21972,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 90
+  followRadius: 7
   detectionRadius: 5
-  attackRadius: 2
-  slimeRadius: 0.4
+  attackRadius: 2.5
+  slimeRadius: 0.45
+  moveSpeed: 2
+  jumpForce: 7
   damage:
     damageType: 0
     damageAmount: 30
-  moveSpeed: 2
-  jumpForce: 5
   attackLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -22020,7 +22021,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.375
+  m_Radius: 0.37
 --- !u!50 &729926601
 Rigidbody2D:
   serializedVersion: 4
@@ -22996,7 +22997,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1940850741664508913, guid: 931c93a1d2c2de94bb0f51424f509e0b, type: 3}
+  m_Sprite: {fileID: 7252957475886316619, guid: 931c93a1d2c2de94bb0f51424f509e0b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23813,7 +23814,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2680295785699229304, guid: 931c93a1d2c2de94bb0f51424f509e0b, type: 3}
+  m_Sprite: {fileID: 796298183796930670, guid: 931c93a1d2c2de94bb0f51424f509e0b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23907,10 +23908,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 941525432}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4333494, y: 0.08333466}
-  m_AnchorMax: {x: 0.916672, y: 0.5753758}
-  m_AnchoredPosition: {x: -0.12545967, y: -0.082847595}
-  m_SizeDelta: {x: 0.25090027, y: -0.1636734}
+  m_AnchorMin: {x: 0.6583253, y: 0.08333466}
+  m_AnchorMax: {x: 0.916672, y: 0.5}
+  m_AnchoredPosition: {x: -0.2743988, y: 0.21039963}
+  m_SizeDelta: {x: 0.54870033, y: 0.42300034}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1293795200
 MonoBehaviour:
@@ -42810,9 +42811,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb313793dc37dde4d87d2d97977be5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyPotionSprite: {fileID: 0}
-  healPotionSprite: {fileID: 0}
-  manaPotionSprite: {fileID: 0}
+  emptyPotionSprite: {fileID: -848459561742219566, guid: 931c93a1d2c2de94bb0f51424f509e0b, type: 3}
+  healPotionSprite: {fileID: 7252957475886316619, guid: 931c93a1d2c2de94bb0f51424f509e0b, type: 3}
+  manaPotionSprite: {fileID: 796298183796930670, guid: 931c93a1d2c2de94bb0f51424f509e0b, type: 3}
   healButton: {fileID: 952152980}
   manaButton: {fileID: 1293488992}
   healPotionAmountText: {fileID: 217230529}

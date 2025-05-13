@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slime : MonoBehaviour, IDamageable
 {
     [Header("Settings")]
-    [SerializeField] private float health;
+    [SerializeField] private float maxHealth;
 
     [SerializeField] private float followRadius;
     [SerializeField] private float detectionRadius;
@@ -22,6 +23,7 @@ public class Slime : MonoBehaviour, IDamageable
 
 
     [Header("Other")]
+    [SerializeField] private Slider healthSlider;
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb;
 
@@ -32,6 +34,7 @@ public class Slime : MonoBehaviour, IDamageable
     private Transform target;
     private Stages stage = Stages.Idle;
     private bool canAttack = true;
+    private float currentHealth;
 
     private enum Stages
     {
@@ -43,6 +46,8 @@ public class Slime : MonoBehaviour, IDamageable
     private void Start()
     {
         InvokeRepeating("CheckForTarget", 1, 1);
+        currentHealth = maxHealth;
+        UpdateHealtBar();
     }
 
     public void CheckForTarget()
@@ -170,9 +175,10 @@ public class Slime : MonoBehaviour, IDamageable
 
     public void TakeDamage(Damage damage)
     {
-        health -= damage.damageAmount;
-        Debug.Log(health);
-        if (health <= 0)
+        currentHealth -= damage.damageAmount;
+        UpdateHealtBar();
+        Debug.Log(currentHealth);
+        if (currentHealth <= 0)
         {
             Debug.Log("Slime is dead");
             Destroy(gameObject);
@@ -189,6 +195,20 @@ public class Slime : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position, attackRadius);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, slimeRadius);
+    }
+
+    private void UpdateHealtBar()
+    {
+        if(currentHealth == maxHealth)
+        {
+            healthSlider.gameObject.SetActive(false);
+        }
+        else
+        {
+            healthSlider.gameObject.SetActive(true);
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = currentHealth;
+        }
     }
 
     //[Header("Settings")]

@@ -57,7 +57,8 @@ public class Player : MonoBehaviour, IDamageable
     private bool canRotate = true;
     private bool canRun = true;
     private bool isRunning = false;
-    private Transform targetEnemy;
+    private Transform targetEnemy = null;
+    private Vector2 lookDirection = Vector2.right;
 
 
     public event EventHandler OnHealthChanged;
@@ -168,7 +169,7 @@ public class Player : MonoBehaviour, IDamageable
 
         targetEnemy = closestEnemy;
     }
-    private bool HasTarget()
+    public bool HasTarget()
     {
         return targetEnemy != null;
     }
@@ -252,6 +253,7 @@ public class Player : MonoBehaviour, IDamageable
         if (direction == Vector2.zero)
             return;
 
+        lookDirection = direction;
         float angle = 0;
         if (playerVisual.localScale.x == 1)
         {
@@ -362,5 +364,26 @@ public class Player : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(gameObject.transform.position, detectionRadius);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(gameObject.transform.position, interactRadius);
+    }
+    public Transform GetTargetEnemy()
+    {
+        return targetEnemy;
+    }
+    public Vector2 GetLookDirection()
+    {
+        return lookDirection;
+    }
+    public bool HasEnoughMana(float checkMana)
+    {
+        return mana >= checkMana;
+    }
+    public void SubtractMana(float manaToSubtract)
+    {
+        mana -= manaToSubtract;
+        if(mana < 0)
+        {
+            mana = 0;
+        }
+        OnManaChanged?.Invoke(this, EventArgs.Empty);
     }
 }

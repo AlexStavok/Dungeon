@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
 
     public event EventHandler OnPlayerInteract;
 
+    public event EventHandler OnUsingMagicSwordSkill;
+
     private PlayerActions playerActions;
 
     private void Awake()
@@ -55,5 +57,10 @@ public class InputManager : MonoBehaviour
     public Vector2 GetMovementVector()
     {
         return playerActions.PlayerActionMap.Move.ReadValue<Vector2>().normalized;
+    }
+
+    public void UsingMagicSwordSkill()
+    {
+        OnUsingMagicSwordSkill?.Invoke(this, EventArgs.Empty);
     }
 }

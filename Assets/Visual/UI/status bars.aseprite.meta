@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 931c93a1d2c2de94bb0f51424f509e0b
+guid: ae5928e913569ca49948af44586697f2
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638828439965505784
+  platformSettingsDirtyTick: 638828461822383070
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: potions
+  - name: status bars
     originalName: 
-    pivot: {x: 0.49180326, y: -0.03448276}
+    pivot: {x: 0.5, y: -0.01734104}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 61
-      height: 29
-    spriteID: d402b215819cab1458ebdec80dc20e7e
+      width: 128
+      height: 173
+    spriteID: d5f006e607c028642bd3536ecb0de76e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +142,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: potions_0
+  - name: status bars_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -150,10 +150,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 20
-      width: 13
-      height: 13
-    spriteID: 3119bb7d07d5eea4c9e7b5aa26dc081e
+      y: 161
+      width: 128
+      height: 16
+    spriteID: 72aa02c7efeb6ec42957b37c45d720dc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +162,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: potions_1
+  - name: status bars_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -170,10 +170,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 20
-      y: 20
-      width: 13
-      height: 13
-    spriteID: 64833ae0db596ab4e9500dde7d805abd
+      y: 133
+      width: 110
+      height: 10
+    spriteID: 1f219d0d692df7243ac2ad202b7f124f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,18 +182,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: potions_2
+  - name: status bars_2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 36
-      y: 20
-      width: 13
-      height: 13
-    spriteID: 13780d2a6c5089a4b8c94ff9723a6f11
+      x: 20
+      y: 100
+      width: 110
+      height: 10
+    spriteID: 8ad20ca41739828498bb0f631c9d6209
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -202,27 +202,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: potions_3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 52
-      y: 20
-      width: 13
-      height: 13
-    spriteID: 16e7f3f44c9770848b8960cad6114f91
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: potions_4
+  - name: status bars_3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -230,10 +210,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
-      width: 13
-      height: 13
-    spriteID: be5d2a9b9726c3c45afc358d7a9ec20f
+      y: 65
+      width: 112
+      height: 16
+    spriteID: 85b2219d6803f9840b03d8839d010d59
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -242,7 +222,27 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: potions_5
+  - name: status bars_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 20
+      y: 36
+      width: 94
+      height: 10
+    spriteID: e78e9a8e97e31e34ba166a981052d41a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: status bars_5
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -251,29 +251,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 20
       y: 4
-      width: 13
-      height: 13
-    spriteID: 02c61f0c04a0d7449b65b48cbc652fb7
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: potions_6
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 52
-      y: 4
-      width: 13
-      height: 13
-    spriteID: ecfcad7a7f5bf3f4da88022c84781ae1
+      width: 94
+      height: 10
+    spriteID: ec0001ce86977124199417370111f38e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -284,21 +264,21 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: -1094341978
-    name: potions
+    guid: 201017398
+    name: status bars
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: potions
+    - name: status bars
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 2
-        y: 1
-        width: 61
-        height: 29
-      spriteId: d402b215819cab1458ebdec80dc20e7e
+        x: 0
+        y: 3
+        width: 128
+        height: 173
+      spriteId: d5f006e607c028642bd3536ecb0de76e
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -341,4 +321,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 64, y: 32}
+  canvasSize: {x: 128, y: 176}

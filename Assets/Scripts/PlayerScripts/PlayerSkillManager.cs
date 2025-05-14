@@ -4,7 +4,7 @@ using System.Runtime.ConstrainedExecution;
 using TMPro;
 using UnityEngine;
 
-public class SkillManager : MonoBehaviour
+public class PlayerSkillManager : MonoBehaviour
 {
     [SerializeField] private Transform skillSpawnPosition;
 

@@ -570,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 212c69332f45fc54b812ef4ca9754712, type: 3}
       propertyPath: m_SortingOrder
-      value: 20
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 212c69332f45fc54b812ef4ca9754712, type: 3}
       propertyPath: m_LocalPosition.x
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6581527106718081226, guid: 26db4bfbe12778c478f1de80d0134915, type: 3}
+  m_Sprite: {fileID: 5860970280861792531, guid: 6f0b2097f95ee8545b5da5aa21ee365a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -979,7 +979,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5179276856858966785, guid: 26db4bfbe12778c478f1de80d0134915, type: 3}
+  m_Sprite: {fileID: -4521700326072560442, guid: 6f0b2097f95ee8545b5da5aa21ee365a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1782,6 +1782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillSpawnPosition: {fileID: 1637599597}
   magicSwordPrefab: {fileID: 4588694811272361821, guid: ec20b02361837504fa9c3568b4799a66, type: 3}
+  swordRainPrefab: {fileID: 6651925451165583445, guid: ccdd675a383a8314893c26aaf2a94db7, type: 3}
 --- !u!4 &489159037
 Transform:
   m_ObjectHideFlags: 0
@@ -2047,7 +2048,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8697202540803562600, guid: 26db4bfbe12778c478f1de80d0134915, type: 3}
+  m_Sprite: {fileID: -3557625940898759418, guid: 6f0b2097f95ee8545b5da5aa21ee365a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23390,7 +23391,7 @@ Transform:
   m_GameObject: {fileID: 1180421019}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1, y: -0.25, z: 0}
+  m_LocalPosition: {x: 0.1, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23505,6 +23506,7 @@ RectTransform:
   - {fileID: 313270474}
   - {fileID: 563420126}
   - {fileID: 1796450299}
+  - {fileID: 1367658169}
   m_Father: {fileID: 58200528}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -23525,6 +23527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magicSwordSkillButton: {fileID: 563420127}
+  swordRainSkillButton: {fileID: 1367658170}
 --- !u!4 &1247829318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: 212c69332f45fc54b812ef4ca9754712, type: 3}
@@ -40598,6 +40601,126 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1367658168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367658169}
+  - component: {fileID: 1367658172}
+  - component: {fileID: 1367658171}
+  - component: {fileID: 1367658170}
+  m_Layer: 5
+  m_Name: SwordRainSkillButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1367658169
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367658168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1216670944}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 535, y: -390}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1367658170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367658168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1367658171}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1367658171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367658168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -6368141052487499838, guid: 6f0b2097f95ee8545b5da5aa21ee365a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1367658172
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367658168}
+  m_CullTransparentMesh: 1
 --- !u!1 &1399564758
 GameObject:
   m_ObjectHideFlags: 0
@@ -41672,7 +41795,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1584901392946742243, guid: 26db4bfbe12778c478f1de80d0134915, type: 3}
+  m_Sprite: {fileID: -3808075300450144234, guid: 6f0b2097f95ee8545b5da5aa21ee365a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -42803,7 +42926,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1535974608982156585, guid: 26db4bfbe12778c478f1de80d0134915, type: 3}
+  m_Sprite: {fileID: 8737033831761621046, guid: 6f0b2097f95ee8545b5da5aa21ee365a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 26db4bfbe12778c478f1de80d0134915
+guid: 6f0b2097f95ee8545b5da5aa21ee365a
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638826677753780121
+  platformSettingsDirtyTick: 638828365265310295
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 80
       height: 48
-    spriteID: 245b7da5a25813041bcc46113c862c8b
+    spriteID: b966016a2afd2b746a0b202cd7954ca3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,47 +153,7 @@ ScriptedImporter:
       y: 36
       width: 16
       height: 16
-    spriteID: 5811b7bf929b1bb4294efff72a13bb19
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: abilities_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 36
-      y: 36
-      width: 16
-      height: 16
-    spriteID: e23997d07b07ebe45b70f7a13598d9a2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: abilities_3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 68
-      y: 36
-      width: 16
-      height: 16
-    spriteID: 4a09f71ac5287534e9a558debb387cc2
+    spriteID: b07b4c3401fcacb4aa9e50f1375e0124
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -209,11 +169,51 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
+      x: 36
+      y: 36
+      width: 16
+      height: 16
+    spriteID: f9892f6834ae17248b484a42ceb83180
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: abilities_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 68
+      y: 36
+      width: 16
+      height: 16
+    spriteID: c4618875de0ed434c9f01384124797f7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: abilities_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
       x: 6
       y: 6
       width: 12
       height: 12
-    spriteID: 29ca8689c2616cf4495412a8ae96a31b
+    spriteID: 5880ad77b3d2d6342a06a454657d3aed
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -233,7 +233,27 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: 834b373b62cf72a41a3a1a2d113ab81d
+    spriteID: 3baf5ea3c7c47a54ea1daabc889a1f14
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: abilities_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 68
+      y: 4
+      width: 16
+      height: 16
+    spriteID: 3ece8e7eb92f6d24b9c4e91ed12485b4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -258,7 +278,7 @@ ScriptedImporter:
         y: 0
         width: 80
         height: 48
-      spriteId: 245b7da5a25813041bcc46113c862c8b
+      spriteId: b966016a2afd2b746a0b202cd7954ca3
     linkedCells: []
     parentIndex: -1
   platformSettings:

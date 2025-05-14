@@ -6,12 +6,34 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
-    [SerializeField] Transform skillSpawnPosition;
+    [SerializeField] private Transform skillSpawnPosition;
 
-    [SerializeField] MagicSword magicSwordPrefab;
+    [SerializeField] private MagicSword magicSwordPrefab;
+    [SerializeField] private SwordRain swordRainPrefab;
     void Start()
     {
         InputManager.Instance.OnUsingMagicSwordSkill += InputManager_OnUsingMagicSwordSkill;
+        InputManager.Instance.OnUsingSwordRainSkill += InputManager_OnUsingSwordRainSkill;
+    }
+
+    private void InputManager_OnUsingSwordRainSkill(object sender, System.EventArgs e)
+    {
+        if (Player.Instance.HasEnoughMana(swordRainPrefab.GetManaCost()))
+        {
+            Player.Instance.SubtractMana(swordRainPrefab.GetManaCost());
+
+            SwordRain swordRain = Instantiate(swordRainPrefab, skillSpawnPosition.position, Quaternion.identity);
+            Transform targetPosition = Player.Instance.GetTargetEnemy();
+
+            if (targetPosition != null)
+            {
+                swordRain.GetComponent<SwordRain>().Initialize(targetPosition.position);
+            }
+            else
+            {
+                swordRain.GetComponent<SwordRain>().Initialize((Vector2)skillSpawnPosition.position + Player.Instance.GetLookDirection());
+            }
+        }
     }
 
     private void InputManager_OnUsingMagicSwordSkill(object sender, System.EventArgs e)
@@ -32,10 +54,5 @@ public class SkillManager : MonoBehaviour
                 sword.GetComponent<MagicSword>().Initialize(skillSpawnPosition.position, (Vector2)skillSpawnPosition.position + Player.Instance.GetLookDirection());
             }
         }
-    }
-
-    void Update()
-    {
-        
     }
 }

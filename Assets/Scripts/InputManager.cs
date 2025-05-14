@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
     public event EventHandler OnPlayerInteract;
 
     public event EventHandler OnUsingMagicSwordSkill;
+    public event EventHandler OnUsingSwordRainSkill;
 
     private PlayerActions playerActions;
 
@@ -62,5 +63,10 @@ public class InputManager : MonoBehaviour
     public void UsingMagicSwordSkill()
     {
         OnUsingMagicSwordSkill?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void UsingSwordRainSkill()
+    {
+        OnUsingSwordRainSkill?.Invoke(this, EventArgs.Empty);
     }
 }

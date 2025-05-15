@@ -7,6 +7,7 @@ public class InputUI : MonoBehaviour
 {
     [SerializeField] private Button magicSwordSkillButton;
     [SerializeField] private Button swordRainSkillButton;
+    [SerializeField] private Button swordCageSkillButton;
 
     void Start()
     {
@@ -17,6 +18,10 @@ public class InputUI : MonoBehaviour
         swordRainSkillButton.onClick.AddListener(() =>
         {
             InputManager.Instance.UsingSwordRainSkill();
+        });
+        swordCageSkillButton.onClick.AddListener(() =>
+        {
+            InputManager.Instance.UsingSwordCageSkill();
         });
     }
 }

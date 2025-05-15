@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Slime : MonoBehaviour, IDamageable
+public class Slime : Monster, IDamageable
 {
     [Header("Settings")]
     [SerializeField] private float maxHealth;
@@ -68,6 +68,12 @@ public class Slime : MonoBehaviour, IDamageable
 
     void Update()
     {
+        if (IsStunned())
+        {
+            IdleHandler();
+            return;
+        }
+
         CheckDistanceToTarget();
         switch (stage)
         {

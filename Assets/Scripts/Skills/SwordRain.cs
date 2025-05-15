@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SwordRain : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private float manaCost;
     [SerializeField] private Damage damage;
@@ -21,7 +20,7 @@ public class SwordRain : MonoBehaviour
 
     public void GiveDamage() {
 
-        Collider2D[] enemies = Physics2D.OverlapCapsuleAll((Vector2)transform.position + damageCenter, damageSize, CapsuleDirection2D.Horizontal, enemyLayer);
+        Collider2D[] enemies = Physics2D.OverlapCapsuleAll((Vector2)transform.position + damageCenter, damageSize, CapsuleDirection2D.Horizontal, 0f, enemyLayer);
 
         foreach (var enemy in enemies)
         {
@@ -56,14 +55,10 @@ public class SwordRain : MonoBehaviour
         Vector2 rectCenter = center;
         Vector2 rectSize = new Vector2(width - height, height);
 
-        // Малюємо центральний прямокутник
         Gizmos.DrawWireCube(rectCenter, rectSize);
 
-        // Малюємо ліве півколо
         Gizmos.DrawWireSphere(center + Vector2.left * (width / 2f - radius), radius);
 
-        // Малюємо праве півколо
         Gizmos.DrawWireSphere(center + Vector2.right * (width / 2f - radius), radius);
     }
-
 }

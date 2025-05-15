@@ -1,19 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using TMPro;
 using UnityEngine;
 
-public class PlayerSkillManager : MonoBehaviour
+public class SkillManager : MonoBehaviour
 {
     [SerializeField] private Transform skillSpawnPosition;
 
     [SerializeField] private MagicSword magicSwordPrefab;
     [SerializeField] private SwordRain swordRainPrefab;
+    [SerializeField] private SwordCage swordCagePrefab;
     void Start()
     {
         InputManager.Instance.OnUsingMagicSwordSkill += InputManager_OnUsingMagicSwordSkill;
         InputManager.Instance.OnUsingSwordRainSkill += InputManager_OnUsingSwordRainSkill;
+        InputManager.Instance.OnUsingSwordCageSkill += InputManager_OnUsingSwordCageSkill;
+    }
+
+    private void InputManager_OnUsingSwordCageSkill(object sender, EventArgs e)
+    {
+        if (Player.Instance.HasEnoughMana(swordCagePrefab.GetManaCost()))
+        {
+            Player.Instance.SubtractMana(swordCagePrefab.GetManaCost());
+
+            SwordCage swordCage = Instantiate(swordCagePrefab, skillSpawnPosition.position, Quaternion.identity);
+            Transform targetPosition = Player.Instance.GetTargetEnemy();
+
+            if (targetPosition != null)
+            {
+                swordCage.GetComponent<SwordCage>().Initialize(targetPosition.position);
+            }
+            else
+            {
+                swordCage.GetComponent<SwordCage>().Initialize((Vector2)skillSpawnPosition.position + Player.Instance.GetLookDirection());
+            }
+        }
     }
 
     private void InputManager_OnUsingSwordRainSkill(object sender, System.EventArgs e)

@@ -12,7 +12,7 @@ public class StandartManaPotion : PotionEffect
     }
     public override void ApplyEffect()
     {
-        Player.Instance.AddMana(manaAmount);
+        PlayerStats.Instance.AddMana(manaAmount);
     }
 
 }

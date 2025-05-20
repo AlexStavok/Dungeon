@@ -8,40 +8,36 @@ public class StatusBarsUI : MonoBehaviour
 {
     [SerializeField] private Slider healthBarSlider;
     [SerializeField] private Slider manaBarSlider;
-    [SerializeField] private Slider staminaBarSlider;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI manaText;
 
     private void Start()
     {
-        Player.Instance.OnHealthChanged += Player_OnHealthChanged;
-        Player.Instance.OnManaChanged += Player_OnManaChanged;
-        Player.Instance.OnStaminaChanged += Player_OnStaminaChanged;
+        PlayerStats.Instance.OnHealthChanged += PlayerStats_OnHealthChanged;
+        PlayerStats.Instance.OnManaChanged += PlayerStats_OnManaChanged;
 
-        Player_OnHealthChanged(Player.Instance, System.EventArgs.Empty);
-        Player_OnManaChanged(Player.Instance, System.EventArgs.Empty);
-        Player_OnStaminaChanged(Player.Instance, System.EventArgs.Empty);
+        PlayerStats_OnHealthChanged(PlayerStats.Instance, System.EventArgs.Empty);
+        PlayerStats_OnManaChanged(PlayerStats.Instance, System.EventArgs.Empty);
     }
 
-    private void Player_OnStaminaChanged(object sender, System.EventArgs e)
+    private void PlayerStats_OnManaChanged(object sender, System.EventArgs e)
     {
-        staminaBarSlider.maxValue = Player.Instance.maxStamina;
-        staminaBarSlider.value = Player.Instance.stamina;
+        manaBarSlider.maxValue = PlayerStats.Instance.GetMaxMana();
+        manaBarSlider.value = PlayerStats.Instance.GetMana();
+
+        manaText.text = $"{PlayerStats.Instance.GetMaxMana()}/{PlayerStats.Instance.GetMaxMana()}";
     }
 
-    private void Player_OnManaChanged(object sender, System.EventArgs e)
+    private void PlayerStats_OnHealthChanged(object sender, System.EventArgs e)
     {
-        manaBarSlider.maxValue = Player.Instance.maxMana;
-        manaBarSlider.value = Player.Instance.mana;
+        healthBarSlider.maxValue = PlayerStats.Instance.GetMaxHealth();
+        healthBarSlider.value = PlayerStats.Instance.GetHealth();
 
-        manaText.text = $"{Player.Instance.mana}/{Player.Instance.maxMana}";
+        healthText.text = $"{PlayerStats.Instance.GetMaxHealth()}/{PlayerStats.Instance.GetHealth()}";
     }
-
-    private void Player_OnHealthChanged(object sender, System.EventArgs e)
+    private void OnDestroy()
     {
-        healthBarSlider.maxValue = Player.Instance.maxHealth;
-        healthBarSlider.value = Player.Instance.health;
-
-        healthText.text = $"{Player.Instance.health}/{Player.Instance.maxHealth}";
+        PlayerStats.Instance.OnHealthChanged -= PlayerStats_OnHealthChanged;
+        PlayerStats.Instance.OnManaChanged -= PlayerStats_OnManaChanged;
     }
 }

@@ -21,12 +21,12 @@ public class SkillManager : MonoBehaviour
 
     private void InputManager_OnUsingSwordCageSkill(object sender, EventArgs e)
     {
-        if (Player.Instance.HasEnoughMana(swordCagePrefab.GetManaCost()))
+        if (PlayerStats.Instance.HasEnoughMana(swordCagePrefab.GetManaCost()))
         {
-            Player.Instance.SubtractMana(swordCagePrefab.GetManaCost());
+            PlayerStats.Instance.SubtractMana(swordCagePrefab.GetManaCost());
 
             SwordCage swordCage = Instantiate(swordCagePrefab, skillSpawnPosition.position, Quaternion.identity);
-            Transform targetPosition = Player.Instance.GetTargetEnemy();
+            Transform targetPosition = PlayerCombat.Instance.GetTargetEnemy();
 
             if (targetPosition != null)
             {
@@ -34,19 +34,19 @@ public class SkillManager : MonoBehaviour
             }
             else
             {
-                swordCage.GetComponent<SwordCage>().Initialize((Vector2)skillSpawnPosition.position + Player.Instance.GetLookDirection());
+                swordCage.GetComponent<SwordCage>().Initialize((Vector2)skillSpawnPosition.position + PlayerMovement.Instance.GetLookDirection());
             }
         }
     }
 
     private void InputManager_OnUsingSwordRainSkill(object sender, System.EventArgs e)
     {
-        if (Player.Instance.HasEnoughMana(swordRainPrefab.GetManaCost()))
+        if (PlayerStats.Instance.HasEnoughMana(swordRainPrefab.GetManaCost()))
         {
-            Player.Instance.SubtractMana(swordRainPrefab.GetManaCost());
+            PlayerStats.Instance.SubtractMana(swordRainPrefab.GetManaCost());
 
             SwordRain swordRain = Instantiate(swordRainPrefab, skillSpawnPosition.position, Quaternion.identity);
-            Transform targetPosition = Player.Instance.GetTargetEnemy();
+            Transform targetPosition = PlayerCombat.Instance.GetTargetEnemy();
 
             if (targetPosition != null)
             {
@@ -54,19 +54,19 @@ public class SkillManager : MonoBehaviour
             }
             else
             {
-                swordRain.GetComponent<SwordRain>().Initialize((Vector2)skillSpawnPosition.position + Player.Instance.GetLookDirection());
+                swordRain.GetComponent<SwordRain>().Initialize((Vector2)skillSpawnPosition.position + PlayerMovement.Instance.GetLookDirection());
             }
         }
     }
 
     private void InputManager_OnUsingMagicSwordSkill(object sender, System.EventArgs e)
     {
-        if (Player.Instance.HasEnoughMana(magicSwordPrefab.GetManaCost()))
+        if (PlayerStats.Instance.HasEnoughMana(magicSwordPrefab.GetManaCost()))
         {
-            Player.Instance.SubtractMana(magicSwordPrefab.GetManaCost());
+            PlayerStats.Instance.SubtractMana(magicSwordPrefab.GetManaCost());
 
             MagicSword sword = Instantiate(magicSwordPrefab, skillSpawnPosition.position, Quaternion.identity);
-            Transform targetPosition = Player.Instance.GetTargetEnemy();
+            Transform targetPosition = PlayerCombat.Instance.GetTargetEnemy();
 
             if (targetPosition != null)
             {
@@ -74,7 +74,7 @@ public class SkillManager : MonoBehaviour
             }
             else
             {
-                sword.GetComponent<MagicSword>().Initialize(skillSpawnPosition.position, (Vector2)skillSpawnPosition.position + Player.Instance.GetLookDirection());
+                sword.GetComponent<MagicSword>().Initialize(skillSpawnPosition.position, (Vector2)skillSpawnPosition.position + PlayerMovement.Instance.GetLookDirection());
             }
         }
     }

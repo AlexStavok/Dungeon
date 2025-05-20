@@ -12,7 +12,7 @@ public class StandartHealPotion : PotionEffect
     }
     public override void ApplyEffect()
     {
-        Player.Instance.AddHeal(healAmount);
+        PlayerStats.Instance.AddHeal(healAmount);
     }
 
 }

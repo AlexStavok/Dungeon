@@ -10,7 +10,7 @@ public class DevMenuUI : MonoBehaviour
     {
         levelUpButton.onClick.AddListener(() =>
         {
-            Player.Instance.LevelUp();
+            PlayerStats.Instance.LevelUp();
         });
     }
 }

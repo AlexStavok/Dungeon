@@ -4,7 +4,14 @@ using UnityEngine;
 
 public abstract class Monster : MonoBehaviour
 {
+    [SerializeField] protected float experienceForKill;
+
     private bool isStunned = false;
+
+    protected void GiveExperience()
+    {
+        PlayerStats.Instance.GetExperience(experienceForKill);
+    }
     public void ActivateStun()
     {
         isStunned = true;

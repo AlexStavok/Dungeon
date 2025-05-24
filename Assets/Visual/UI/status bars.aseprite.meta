@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638828461822383070
+  platformSettingsDirtyTick: 638836897116122368
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: status bars
     originalName: 
-    pivot: {x: 0.5, y: -0.01734104}
+    pivot: {x: 0.625, y: -0.0111524165}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -131,8 +131,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 128
-      height: 173
-    spriteID: d5f006e607c028642bd3536ecb0de76e
+      height: 269
+    spriteID: 5b5221fe1d938ea4e97862315f11761e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -150,10 +150,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 161
-      width: 128
+      y: 257
+      width: 96
       height: 16
-    spriteID: 72aa02c7efeb6ec42957b37c45d720dc
+    spriteID: 7e792ca2ce9a3524bb932b4fefc6f060
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,10 +170,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 20
-      y: 133
-      width: 110
+      y: 228
+      width: 80
       height: 10
-    spriteID: 1f219d0d692df7243ac2ad202b7f124f
+    spriteID: 9e5181667f45f5e47b5f88d5c7414828
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -190,10 +190,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 20
-      y: 100
-      width: 110
+      y: 196
+      width: 80
       height: 10
-    spriteID: 8ad20ca41739828498bb0f631c9d6209
+    spriteID: 0c9178d8fcb5aa840a1786407bed3e0c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -210,10 +210,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 65
-      width: 112
+      y: 161
+      width: 128
       height: 16
-    spriteID: 85b2219d6803f9840b03d8839d010d59
+    spriteID: 6fd2156b454f1624fba75c74ca88922c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -230,10 +230,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 20
-      y: 36
-      width: 94
+      y: 133
+      width: 110
       height: 10
-    spriteID: e78e9a8e97e31e34ba166a981052d41a
+    spriteID: a36a11ff795710b47825d2c505adc2b1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -250,10 +250,70 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 20
+      y: 100
+      width: 110
+      height: 10
+    spriteID: b0971aab00d72894cb717a6787f59ec3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: status bars_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 65
+      width: 112
+      height: 16
+    spriteID: 64662753182aa864092c8893e028f516
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: status bars_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 20
+      y: 36
+      width: 94
+      height: 10
+    spriteID: beebf4b64cb29574c8fdaa9d9e8cd9a2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: status bars_8
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 20
       y: 4
       width: 94
       height: 10
-    spriteID: ec0001ce86977124199417370111f38e
+    spriteID: 7e72f1bf6ba34404491cc34c9ee2389e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -277,8 +337,8 @@ ScriptedImporter:
         x: 0
         y: 3
         width: 128
-        height: 173
-      spriteId: d5f006e607c028642bd3536ecb0de76e
+        height: 269
+      spriteId: 5b5221fe1d938ea4e97862315f11761e
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -321,4 +381,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 128, y: 176}
+  canvasSize: {x: 160, y: 272}

@@ -31,4 +31,8 @@ public class PlayerСharacteristicsConfigSO : ScriptableObject
     public float mana;
     public float magicResistance;
     public float magicPower;
+
+    [Header("Experience")]
+    public float startTargetExperience;
+    public float targetExperienceIncrement;
 }

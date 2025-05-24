@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SwordRain : MonoBehaviour
+public class SwordRain : Skill
 {
     [SerializeField] private GameObject hitEffect;
-    [SerializeField] private float manaCost;
-    [SerializeField] private Damage damage;
     [SerializeField] private Vector2 damageCenter;
     [SerializeField] private Vector2 damageSize;
     [SerializeField] private LayerMask enemyLayer;
 
 
-    public void Initialize(Vector2 startPos)
+    public override void Initialize(Vector2 startPos)
     {
         transform.position = startPos;
     }

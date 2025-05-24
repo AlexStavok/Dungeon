@@ -70,11 +70,11 @@ public class SkillManager : MonoBehaviour
 
             if (targetPosition != null)
             {
-                sword.GetComponent<MagicSword>().Initialize(skillSpawnPosition.position, targetPosition.position);
+                sword.GetComponent<MagicSword>().Initialize(targetPosition.position);
             }
             else
             {
-                sword.GetComponent<MagicSword>().Initialize(skillSpawnPosition.position, (Vector2)skillSpawnPosition.position + PlayerMovement.Instance.GetLookDirection());
+                sword.GetComponent<MagicSword>().Initialize((Vector2)skillSpawnPosition.position + PlayerMovement.Instance.GetLookDirection());
             }
         }
     }

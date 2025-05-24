@@ -30,12 +30,11 @@ public class PlayerStats : MonoBehaviour
 
     [Space(5)]
     [SerializeField] private float baseMoveSpeed;
-    [SerializeField] private float runSpeedMultiplier;
-    [SerializeField] private float staminaDrainRate;
-    [SerializeField] private float staminaRegenRate;
     private float currentMoveSpeed;
 
     [Header("Level")]
+    [SerializeField] private float targetExperience;
+    [SerializeField] private float currentExperience;
     [SerializeField] private int level;
     [SerializeField] private int characteristicPoints;
     [SerializeField] private int skillPoints;
@@ -45,6 +44,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private PlayerÑharacteristicsConfigSO ñharacteristicsConfigSO;
 
 
+    public event EventHandler OnExperienceChanged;
     public event EventHandler OnHealthChanged;
     public event EventHandler OnManaChanged;
 
@@ -54,11 +54,12 @@ public class PlayerStats : MonoBehaviour
         {
             Instance = this;
         }
+
+        SetStartAttributes();
+        CalculateCharacteristics();
     }
     private void Start()
     {
-        SetStartAttributes();
-        CalculateCharacteristics();
     }
 
     private void SetStartAttributes()
@@ -71,7 +72,11 @@ public class PlayerStats : MonoBehaviour
 
         baseMoveSpeed = ñharacteristicsConfigSO.moveSpeed;
         currentMoveSpeed = baseMoveSpeed;
+
         level = 1;
+        targetExperience = ñharacteristicsConfigSO.startTargetExperience;
+        currentExperience = 0f;
+        OnExperienceChanged?.Invoke(this, EventArgs.Empty);
     }
     private void CalculateCharacteristics()
     {
@@ -95,15 +100,41 @@ public class PlayerStats : MonoBehaviour
         OnManaChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    public void GetExperience(float experience)
+    {
+        currentExperience += experience;
+
+        OnExperienceChanged?.Invoke(this, EventArgs.Empty);
+
+        CheckExperience();
+    }
+
+    private void CheckExperience()
+    {
+        if (currentExperience >= targetExperience)
+        {
+            LevelUp();
+        }
+    }
+
     public void LevelUp()
     {
+        currentExperience -= targetExperience;
+        targetExperience = targetExperience + ñharacteristicsConfigSO.targetExperienceIncrement;
+
         level++;
+        skillPoints++;
+        characteristicPoints++;
 
         strength += ñharacteristicsConfigSO.strengthIncrement;
         agility += ñharacteristicsConfigSO.agilityIncrement;
         intelligence += ñharacteristicsConfigSO.intelligenceIncrement;
 
+        OnExperienceChanged?.Invoke(this, EventArgs.Empty);
+
         CalculateCharacteristics();
+
+        CheckExperience();
     }
     public void TakeDamage(Damage damage)
     {
@@ -180,5 +211,17 @@ public class PlayerStats : MonoBehaviour
     public bool HasEnoughMana(float checkMana)
     {
         return mana >= checkMana;
+    }
+    public float GetTargetExperience()
+    {
+        return targetExperience;
+    }
+    public float GetCurrentExperience()
+    {
+        return currentExperience;
+    }
+    public float GetLevel()
+    {
+        return level;
     }
 }

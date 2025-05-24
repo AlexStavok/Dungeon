@@ -341,6 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2afc4a4373340b448804a5004409911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  experienceForKill: 30
   maxHealth: 100
   followRadius: 7
   detectionRadius: 5

@@ -165,12 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1267d69b607b39c4986e40e078e41c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 2522131452049197516}
-  hitEffect: {fileID: 8640060137534695931, guid: e52cf9ca299d4e041bb6ac496f6948d7, type: 3}
   manaCost: 15
   damage:
-    damageType: 0
+    damageType: 1
     damageAmount: 15
+  cooldown: 0
+  hitEffect: {fileID: 8640060137534695931, guid: e52cf9ca299d4e041bb6ac496f6948d7, type: 3}
   damageCenter: {x: 0, y: 0}
   damageSize: {x: 3, y: 1}
   enemyLayer:

@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordCage : MonoBehaviour
+public class SwordCage : Skill
 {
     [SerializeField] private Animator anim;
-    [SerializeField] private float manaCost;
     [SerializeField] private float stunTime;
     [SerializeField] private Vector2 skillCenter;
     [SerializeField] private Vector2 skillSize;
     [SerializeField] private LayerMask enemyLayer;
 
     private const string DISAPPEAR_TRIGGER = "Dissapear";
-    public void Initialize(Vector2 startPos)
+    public override void Initialize(Vector2 startPos)
     {
         transform.position = startPos;
     }

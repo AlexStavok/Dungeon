@@ -28,3 +28,5 @@ MonoBehaviour:
   mana: 15
   magicResistance: 0.5
   magicPower: 0.4
+  startTargetExperience: 50
+  targetExperienceIncrement: 10

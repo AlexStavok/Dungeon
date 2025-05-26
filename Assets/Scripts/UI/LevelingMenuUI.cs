@@ -28,6 +28,7 @@ public class LevelingMenuUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characteristicPointsText;
 
     [Header("Other")]
+    [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private Button exitButton;
     [SerializeField] private Sprite[] skillLevels;
     [SerializeField] private InputUI inputUI;
@@ -68,6 +69,8 @@ public class LevelingMenuUI : MonoBehaviour
         magicSwordLevelImage.sprite = skillLevels[SkillManager.Instance.magicSwordLevel];
         swordCageLevelImage.sprite = skillLevels[SkillManager.Instance.swordCageLevel];
         swordRainLevelImage.sprite = skillLevels[SkillManager.Instance.swordRainLevel];
+
+        levelText.text = PlayerStats.Instance.GetLevel().ToString();
 
         skillPoints = PlayerStats.Instance.GetSkillPoints();
         characteristicPoints = PlayerStats.Instance.GetCharacteristicPoints();

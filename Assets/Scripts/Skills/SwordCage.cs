@@ -11,8 +11,10 @@ public class SwordCage : Skill
     [SerializeField] private LayerMask enemyLayer;
 
     private const string DISAPPEAR_TRIGGER = "Dissapear";
-    public override void Initialize(Vector2 startPos)
+    public void Initialize(Vector2 startPos, SwordCageLevel swordCageLevel, float magicPower)
     {
+        stunTime = swordCageLevel.stunTime * magicPower;
+
         transform.position = startPos;
     }
 

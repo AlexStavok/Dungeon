@@ -27,6 +27,6 @@ MonoBehaviour:
   armor: 0.35
   mana: 15
   magicResistance: 0.5
-  magicPower: 0.4
+  magicPower: 0.2
   startTargetExperience: 50
   targetExperienceIncrement: 10

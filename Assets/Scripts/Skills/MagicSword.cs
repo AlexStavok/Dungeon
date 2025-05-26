@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MagicSword : Skill 
 {
+    [SerializeField] protected Damage damage;
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private float flySpeed;
     [SerializeField] private float maxDistance;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private MagicSwordSO magicSwordSO;
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
@@ -17,8 +19,13 @@ public class MagicSword : Skill
 
     private const string ATTACK_TRIGGER = "Attack";
     private const string DESTROY_TRIGGER = "Destroy";
-    public override void Initialize(Vector2 targetPos)
+    public void Initialize(Vector2 targetPos, MagicSwordLevel magicSwordLevel, float magicPower)
     {
+        damage = magicSwordLevel.damage;
+        damage.damageAmount *= magicPower;
+        flySpeed = magicSwordLevel.flySpeed;
+        maxDistance = magicSwordLevel.maxDistance;
+
         startPosition = gameObject.transform.position;
         targetPosition = targetPos;
 
@@ -71,10 +78,5 @@ public class MagicSword : Skill
     public void DestroySword()
     {
         Destroy(gameObject);
-    }
-
-    public float GetManaCost()
-    {
-        return manaCost;
     }
 }

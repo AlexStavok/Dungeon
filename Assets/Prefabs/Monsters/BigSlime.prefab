@@ -231,9 +231,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3659404428631695496}
+  - component: {fileID: 798882048563202036}
   - component: {fileID: 7562772461901625483}
   - component: {fileID: 7528792294028445716}
-  - component: {fileID: 798882048563202036}
   m_Layer: 7
   m_Name: BigSlime
   m_TagString: Untagged
@@ -258,6 +258,36 @@ Transform:
   - {fileID: 4774065298297713276}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &798882048563202036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3727614969983185105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2afc4a4373340b448804a5004409911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceForKill: 150
+  maxHealth: 150
+  followRadius: 7
+  detectionRadius: 5
+  attackRadius: 3
+  slimeRadius: 1
+  moveSpeed: 1.5
+  jumpForce: 8
+  damage:
+    damageType: 0
+    damageAmount: 50
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  delayBetweenAttacks: 3
+  healthSlider: {fileID: 8210683220973180631}
+  animator: {fileID: 3532022536617099653}
+  rb: {fileID: 7562772461901625483}
 --- !u!50 &7562772461901625483
 Rigidbody2D:
   serializedVersion: 4
@@ -320,36 +350,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.07}
   m_Size: {x: 1.83, y: 1.2}
   m_Direction: 1
---- !u!114 &798882048563202036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3727614969983185105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2afc4a4373340b448804a5004409911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  experienceForKill: 150
-  maxHealth: 150
-  followRadius: 7
-  detectionRadius: 5
-  attackRadius: 3
-  slimeRadius: 1
-  moveSpeed: 1.5
-  jumpForce: 8
-  damage:
-    damageType: 0
-    damageAmount: 50
-  attackLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  delayBetweenAttacks: 3
-  healthSlider: {fileID: 8210683220973180631}
-  animator: {fileID: 3532022536617099653}
-  rb: {fileID: 7562772461901625483}
 --- !u!1 &4807730151499280649
 GameObject:
   m_ObjectHideFlags: 0

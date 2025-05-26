@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class SwordRain : Skill
 {
+
+    [SerializeField] private Damage damage;
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private Vector2 damageCenter;
     [SerializeField] private Vector2 damageSize;
     [SerializeField] private LayerMask enemyLayer;
 
 
-    public override void Initialize(Vector2 startPos)
+    public void Initialize(Vector2 startPos, SwordRainLevel swordRainLevel, float magicPower)
     {
+        damage = swordRainLevel.damage;
+        damage.damageAmount *= magicPower;
+
         transform.position = startPos;
     }
 
@@ -37,10 +42,6 @@ public class SwordRain : Skill
         Destroy(gameObject);
     }
 
-    public float GetManaCost()
-    {
-        return manaCost;
-    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

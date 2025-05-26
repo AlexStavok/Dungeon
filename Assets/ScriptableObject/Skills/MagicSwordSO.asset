@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c74f4070f49541f4aa490af82232c645, type: 3}
+  m_Name: MagicSwordSO
+  m_EditorClassIdentifier: 
+  skillPrefab: {fileID: 4588694811272361821, guid: ec20b02361837504fa9c3568b4799a66, type: 3}
+  levels:
+  - manaCost: 15
+    cooldown: 5
+    damage:
+      damageType: 1
+      damageAmount: 50
+    flySpeed: 5
+    maxDistance: 5
+  - manaCost: 20
+    cooldown: 0
+    damage:
+      damageType: 1
+      damageAmount: 0
+    flySpeed: 0
+    maxDistance: 0
+  - manaCost: 30
+    cooldown: 0
+    damage:
+      damageType: 1
+      damageAmount: 0
+    flySpeed: 0
+    maxDistance: 0

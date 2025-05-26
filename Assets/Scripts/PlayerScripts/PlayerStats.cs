@@ -60,6 +60,7 @@ public class PlayerStats : MonoBehaviour
     }
     private void Start()
     {
+
     }
 
     private void SetStartAttributes()
@@ -220,8 +221,24 @@ public class PlayerStats : MonoBehaviour
     {
         return currentExperience;
     }
-    public float GetLevel()
+    public int GetLevel()
     {
         return level;
+    }
+    public int GetSkillPoints()
+    {
+        return skillPoints;
+    }
+    public int GetCharacteristicPoints()
+    {
+        return characteristicPoints;
+    }
+    public void SubtractSkillPoints()
+    {
+        skillPoints--;
+    }
+    public float GetMagicPower()
+    {
+        return magicPower;
     }
 }

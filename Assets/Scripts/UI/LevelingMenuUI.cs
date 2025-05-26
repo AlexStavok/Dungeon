@@ -58,7 +58,6 @@ public class LevelingMenuUI : MonoBehaviour
         {
             Hide();
         });
-        Hide();
     }
     private void UpdateUI()
     {
@@ -91,8 +90,6 @@ public class LevelingMenuUI : MonoBehaviour
     }
     public void Show()
     {
-        inputUI.Hide();
-
         gameObject.SetActive(true);
 
         UpdateUI();

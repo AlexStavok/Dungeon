@@ -14,4 +14,13 @@ public class Damage
 
     public DamageType damageType;
     public float damageAmount;
+
+    public Damage Clone()
+    {
+        return new Damage
+        {
+            damageType = this.damageType,
+            damageAmount = this.damageAmount
+        };
+    }
 }

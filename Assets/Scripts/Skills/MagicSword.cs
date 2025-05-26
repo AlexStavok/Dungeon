@@ -10,7 +10,6 @@ public class MagicSword : Skill
     [SerializeField] private float flySpeed;
     [SerializeField] private float maxDistance;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private MagicSwordSO magicSwordSO;
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
@@ -21,8 +20,9 @@ public class MagicSword : Skill
     private const string DESTROY_TRIGGER = "Destroy";
     public void Initialize(Vector2 targetPos, MagicSwordLevel magicSwordLevel, float magicPower)
     {
-        damage = magicSwordLevel.damage;
+        damage = magicSwordLevel.damage.Clone();
         damage.damageAmount *= magicPower;
+
         flySpeed = magicSwordLevel.flySpeed;
         maxDistance = magicSwordLevel.maxDistance;
 

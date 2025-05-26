@@ -15,7 +15,7 @@ public class SwordRain : Skill
 
     public void Initialize(Vector2 startPos, SwordRainLevel swordRainLevel, float magicPower)
     {
-        damage = swordRainLevel.damage;
+        damage = swordRainLevel.damage.Clone();
         damage.damageAmount *= magicPower;
 
         transform.position = startPos;

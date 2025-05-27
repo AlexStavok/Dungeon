@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ad2c441dd6736344880d2d84ea38ab5b
+guid: c85d85d892f7e194bbb6d2af81ae7298
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638838866515736787
+  platformSettingsDirtyTick: 638839460271088951
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: props
+  - name: portal_Frame_0
     originalName: 
-    pivot: {x: 2.357143, y: -2.1875}
+    pivot: {x: 0.49999997, y: -0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 14
-      height: 16
-    spriteID: c22a49f33f92b12448e9f4e9c72f3ac0
+      width: 16
+      height: 32
+    spriteID: 9c5a5136536e1964a9bbd2250c6d2a22
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,24 +141,111 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: portal_Frame_1
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 44
+      width: 16
+      height: 32
+    spriteID: 1b0bf392ecb44734e8492c8bad4a2b5b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 44}
+  - name: portal_Frame_2
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 84
+      width: 16
+      height: 32
+    spriteID: 7020788f9f2a6fe42948dbc102b5488f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 84}
+  - name: portal_Frame_3
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 28
+      y: 4
+      width: 16
+      height: 32
+    spriteID: da7d1b3ad91a5454bbf91f423fd5265e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 28, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 728690876
-    name: props
+    guid: -875612064
+    name: portal
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: props
+    - name: portal_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 1
-        y: 35
-        width: 14
-        height: 16
-      spriteId: c22a49f33f92b12448e9f4e9c72f3ac0
+        x: 16
+        y: 16
+        width: 16
+        height: 32
+      spriteId: 9c5a5136536e1964a9bbd2250c6d2a22
+    - name: portal_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 16
+        y: 16
+        width: 16
+        height: 32
+      spriteId: 1b0bf392ecb44734e8492c8bad4a2b5b
+    - name: portal_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 16
+        y: 16
+        width: 16
+        height: 32
+      spriteId: 7020788f9f2a6fe42948dbc102b5488f
+    - name: portal_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 16
+        y: 16
+        width: 16
+        height: 32
+      spriteId: da7d1b3ad91a5454bbf91f423fd5265e
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -201,4 +288,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 68, y: 51}
+  canvasSize: {x: 48, y: 64}

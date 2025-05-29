@@ -25,7 +25,6 @@ public class LevelingMenuUI : MonoBehaviour
 
     [Header("Points")]
     [SerializeField] private TextMeshProUGUI skillPointsText;
-    [SerializeField] private TextMeshProUGUI characteristicPointsText;
 
     [Header("Other")]
     [SerializeField] private TextMeshProUGUI levelText;
@@ -76,7 +75,6 @@ public class LevelingMenuUI : MonoBehaviour
         characteristicPoints = PlayerStats.Instance.GetCharacteristicPoints();
 
         skillPointsText.text = skillPoints.ToString();
-        characteristicPointsText.text = characteristicPoints.ToString();
 
         if (skillPoints > 0)
         {

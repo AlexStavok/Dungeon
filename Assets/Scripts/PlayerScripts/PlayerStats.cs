@@ -147,7 +147,7 @@ public class PlayerStats : MonoBehaviour
                 health = (float)Math.Round(health, 1);
                 break;
             case Damage.DamageType.Magical:
-                health -= (float)Math.Round(damage.damageAmount * (1 - magicResistance), 1);
+                health -= (float)Math.Round(damage.damageAmount * (1 - (magicResistance / 100)), 1);
                 health = (float)Math.Round(health, 1);
                 break;
         }

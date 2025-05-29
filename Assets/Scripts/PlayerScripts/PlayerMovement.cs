@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement Instance;
 
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator anim;
 
     private Vector2 lookDirection = Vector2.right;
 
@@ -26,6 +27,14 @@ public class PlayerMovement : MonoBehaviour
     private void MovementHandler()
     {
         Vector2 vector = InputManager.Instance.GetMovementVector();
+        if (vector == Vector2.zero)
+        {
+            anim.SetBool("IsMoveing", false);
+        }
+        else
+        {
+            anim.SetBool("IsMoveing", true);
+        }
         rb.velocity = vector * PlayerStats.Instance.GetCurrentMoveSpeed();
     }
 

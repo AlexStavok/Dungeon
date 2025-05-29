@@ -706,7 +706,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   attackPoint: {fileID: 2045848692}
-  attackPointRange: 0.4
+  attackPointRange: 0.55
   projectTile: {fileID: 0}
   animator: {fileID: 1247829319}
 --- !u!1 &166083847
@@ -759,8 +759,20 @@ PrefabInstance:
       value: sword
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 212c69332f45fc54b812ef4ca9754712, type: 3}
+      propertyPath: m_Size.y
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 212c69332f45fc54b812ef4ca9754712, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 880314297032939164, guid: 5c904514370420f42989607e471129ee, type: 3}
+    - target: {fileID: 3626916397498700004, guid: 212c69332f45fc54b812ef4ca9754712, type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 212c69332f45fc54b812ef4ca9754712, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 212c69332f45fc54b812ef4ca9754712, type: 3}
       propertyPath: m_LocalPosition.x
@@ -46907,6 +46919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1112661431}
   - component: {fileID: 1112661432}
+  - component: {fileID: 1112661433}
   m_Layer: 0
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -46923,7 +46936,7 @@ Transform:
   m_GameObject: {fileID: 1112661430}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46971,17 +46984,38 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 2274925215110483750, guid: cec4d8b481a46fc44b0e9c77e2e1fda7, type: 3}
+  m_Sprite: {fileID: 587421919182130295, guid: 73b2dcdc4b45839469e430bd347491d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.12, y: 0.16}
+  m_Size: {x: 0.75, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1112661433
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112661430}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d85705faf8608b499219832f3457b22, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1124396741
 GameObject:
   m_ObjectHideFlags: 0
@@ -47211,7 +47245,7 @@ Transform:
   m_GameObject: {fileID: 1180421019}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1, y: -0.3, z: 0}
+  m_LocalPosition: {x: 0.1, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -74464,6 +74498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1487776533}
+  anim: {fileID: 1112661433}
 --- !u!114 &1487776537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77817,7 +77852,7 @@ Transform:
   m_GameObject: {fileID: 2045848691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.258819, w: 0.9659259}
-  m_LocalPosition: {x: 0.626, y: 0.342, z: 0}
+  m_LocalPosition: {x: 0.8, y: 0.342, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

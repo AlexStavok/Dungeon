@@ -9,7 +9,12 @@ public class MechanicalPlate : MonoBehaviour, IMechanicalSwitch
 
     public bool isActive { get; private set; } = false;
 
-    private void Activate()
+    public bool IsActive()
+    {
+        return isActive;
+    }
+
+    public void Activate()
     {
         animator.SetTrigger("Activate");
         isActive = true;

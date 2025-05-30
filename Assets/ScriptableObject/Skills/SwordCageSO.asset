@@ -17,9 +17,9 @@ MonoBehaviour:
   - manaCost: 15
     cooldown: 5
     stunTime: 3
-  - manaCost: 0
-    cooldown: 0
-    stunTime: 0
-  - manaCost: 0
-    cooldown: 0
-    stunTime: 0
+  - manaCost: 25
+    cooldown: 5
+    stunTime: 4
+  - manaCost: 35
+    cooldown: 4
+    stunTime: 5

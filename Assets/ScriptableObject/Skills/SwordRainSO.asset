@@ -19,13 +19,13 @@ MonoBehaviour:
     damage:
       damageType: 1
       damageAmount: 15
-  - manaCost: 0
-    cooldown: 0
+  - manaCost: 25
+    cooldown: 5
     damage:
       damageType: 1
-      damageAmount: 0
-  - manaCost: 0
-    cooldown: 0
+      damageAmount: 25
+  - manaCost: 40
+    cooldown: 4
     damage:
       damageType: 1
-      damageAmount: 0
+      damageAmount: 35

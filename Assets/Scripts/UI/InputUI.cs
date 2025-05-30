@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class InputUI : MonoBehaviour
 {
+    public static InputUI Instance;
+
+
     [Header("MagicSword")]
     [SerializeField] private GameObject magicSwordSkillGameObject;
     [SerializeField] private Button magicSwordSkillButton;
@@ -26,6 +29,13 @@ public class InputUI : MonoBehaviour
     private bool isActiveSwordCage = true;
 
 
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
         magicSwordSkillButton.onClick.AddListener(() =>

@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1671a9120855eb3488b59d9724390dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceForKill: 150
-  maxHealth: 150
+  experienceForKill: 60
+  maxHealth: 250
   followRadius: 7
   detectionRadius: 5
   attackRadius: 3
@@ -512,7 +512,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &6138064876223323501
 MonoBehaviour:

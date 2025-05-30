@@ -183,7 +183,6 @@ public class Slime : Monster, IDamageable
     {
         currentHealth -= damage.damageAmount;
         UpdateHealtBar();
-        Debug.Log(currentHealth);
         DeathHandler();
     }
 
@@ -192,7 +191,6 @@ public class Slime : Monster, IDamageable
         if (currentHealth <= 0)
         {
             GiveExperience();
-            Debug.Log("Slime is dead");
             Destroy(gameObject);
         }
     }

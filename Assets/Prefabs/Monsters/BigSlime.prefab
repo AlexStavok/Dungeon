@@ -60,7 +60,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &8170829366677900358
 MonoBehaviour:
@@ -270,8 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2afc4a4373340b448804a5004409911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceForKill: 150
-  maxHealth: 150
+  experienceForKill: 50
+  maxHealth: 300
   followRadius: 7
   detectionRadius: 5
   attackRadius: 3

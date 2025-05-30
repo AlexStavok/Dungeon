@@ -46,13 +46,13 @@ public class Weapon : MonoBehaviour
     }
     private IEnumerator AttackRoutine()
     {
-        isAttacking = true; // Блокуємо повторний удар
+        isAttacking = true;
+        animator.speed = 1f + PlayerStats.Instance.GetAttackSpeed();
         animator.SetTrigger(attackTrigger);
 
-        // Чекаємо поки анімація завершиться
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
-        isAttacking = false; // Дозволяємо атакувати знову
+        isAttacking = false;
     }
     public void StartAttackAnimation()
     {

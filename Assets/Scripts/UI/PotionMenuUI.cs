@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PotionMenuUI : MonoBehaviour
 {
+    public static PotionMenuUI Instance;
+
     [SerializeField] private Sprite emptyPotionSprite;
     [SerializeField] private Sprite healPotionSprite;
     [SerializeField] private Sprite manaPotionSprite;
@@ -28,6 +30,10 @@ public class PotionMenuUI : MonoBehaviour
 
     private void Awake()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
         healButton.onClick.AddListener(() =>
         {
             if (healPotionAmount <= 0)
@@ -67,4 +73,23 @@ public class PotionMenuUI : MonoBehaviour
         healButton.image.sprite = healPotionAmount > 0 ? healPotionSprite : emptyPotionSprite;
         manaButton.image.sprite = manaPotionAmount > 0 ? manaPotionSprite : emptyPotionSprite;
     }
+    public void Save(ref PotionsData data)
+    {
+        data.healPotionAmount = healPotionAmount;
+        data.manaPotionAmount = manaPotionAmount;
+    }
+    public void Load(PotionsData data)
+    {
+        healPotionAmount = data.healPotionAmount;
+        manaPotionAmount = data.manaPotionAmount;
+
+        UpdatePotionUI();
+    }
+}
+
+[System.Serializable]
+public struct PotionsData
+{
+    public int healPotionAmount;
+    public int manaPotionAmount;
 }

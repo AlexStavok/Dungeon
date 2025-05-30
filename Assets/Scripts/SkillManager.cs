@@ -114,4 +114,27 @@ public class SkillManager : MonoBehaviour
     {
         return swordRainSO.levels[swordRainLevel - 1].cooldown;
     }
+
+    public void Save(ref SkillsData data)
+    {
+        data.magicSwordLevel = magicSwordLevel;
+        data.swordRainLevel = swordRainLevel;
+        data.swordCageLevel = swordCageLevel;
+    }
+    public void Load(SkillsData data)
+    {
+        magicSwordLevel = data.magicSwordLevel;
+        swordRainLevel = data.swordRainLevel;
+        swordCageLevel = data.swordCageLevel;
+
+        InputUI.Instance.Show();
+    }
+}
+
+[System.Serializable]
+public struct SkillsData
+{
+    public int magicSwordLevel;
+    public int swordRainLevel;
+    public int swordCageLevel;
 }

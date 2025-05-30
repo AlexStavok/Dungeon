@@ -23,10 +23,10 @@ MonoBehaviour:
   effectsResistance: 0.4
   blockingDamage: 2.5
   stamina: 13
-  attackSpeed: 2
+  attackSpeed: 2.2
   armor: 0.35
   mana: 15
   magicResistance: 0.5
-  magicPower: 0.2
+  magicPower: 0.1
   startTargetExperience: 50
   targetExperienceIncrement: 10

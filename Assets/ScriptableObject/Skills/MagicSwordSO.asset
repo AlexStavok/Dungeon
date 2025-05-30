@@ -22,16 +22,16 @@ MonoBehaviour:
     flySpeed: 5
     maxDistance: 5
   - manaCost: 20
-    cooldown: 0
+    cooldown: 5
     damage:
       damageType: 1
-      damageAmount: 0
-    flySpeed: 0
-    maxDistance: 0
+      damageAmount: 60
+    flySpeed: 6
+    maxDistance: 6
   - manaCost: 30
-    cooldown: 0
+    cooldown: 4
     damage:
       damageType: 1
-      damageAmount: 0
-    flySpeed: 0
-    maxDistance: 0
+      damageAmount: 70
+    flySpeed: 7
+    maxDistance: 7

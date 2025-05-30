@@ -9,7 +9,7 @@ public class MechanicalLevel : MonoBehaviour, IMechanicalSwitch, IInteractable
 
     public bool isActive { get; private set; } = false;
 
-    private void Activate()
+    public void Activate()
     {
         animator.SetTrigger("Activate");
         isActive = true;
@@ -32,5 +32,10 @@ public class MechanicalLevel : MonoBehaviour, IMechanicalSwitch, IInteractable
         {
             Deactivate();
         }
+    }
+
+    public bool IsActive()
+    {
+        return isActive;
     }
 }

@@ -12,10 +12,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float agility;
     [SerializeField] private float intelligence;
 
-    [SerializeField] private float strengfth;
-    [SerializeField] private float agilityf;
-    [SerializeField] private float intellifgence;
-
     [Header("Ñharacteristics")]
     [SerializeField] private float maxHealth;
     [SerializeField] private float health;
@@ -67,6 +63,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (ñharacteristicsConfigSO == null)
             return;
+
         strength = ñharacteristicsConfigSO.startStrength;
         agility = ñharacteristicsConfigSO.startAgility;
         intelligence = ñharacteristicsConfigSO.startIntelligence;
@@ -241,4 +238,68 @@ public class PlayerStats : MonoBehaviour
     {
         return magicPower;
     }
+    public float GetAttackSpeed()
+    {
+        return attackSpeed / 100;
+    }
+
+    public void Save(ref PlayerStatsData data)
+    {
+        data.position = transform.position;
+        data.health = health;
+        data.mana = mana;
+        data.targetExperience = targetExperience;
+        data.currentExperience = currentExperience;
+        data.level = level;
+        data.skillPoints = skillPoints;
+    }
+    public void Load(PlayerStatsData data)
+    {
+        transform.position = data.position;
+        health = data.health;
+        mana = data.mana;
+        targetExperience = data.targetExperience;
+        currentExperience = data.currentExperience;
+        level = data.level;
+        skillPoints = data.skillPoints;
+
+        SettingsAfterLoad();
+    }
+
+    private void SettingsAfterLoad()
+    {
+        strength = ñharacteristicsConfigSO.startStrength + ((level - 1) * ñharacteristicsConfigSO.strengthIncrement);
+        agility = ñharacteristicsConfigSO.startAgility + ((level - 1) * ñharacteristicsConfigSO.agilityIncrement);
+        intelligence = ñharacteristicsConfigSO.startIntelligence + ((level - 1) * ñharacteristicsConfigSO.intelligenceIncrement);
+
+        maxHealth = strength * ñharacteristicsConfigSO.health;
+        effectsResistance = strength * ñharacteristicsConfigSO.effectsResistance;
+        blockingDamage = strength * ñharacteristicsConfigSO.blockingDamage;
+
+        attackSpeed = agility * ñharacteristicsConfigSO.attackSpeed;
+        armor = agility * ñharacteristicsConfigSO.armor;
+
+        maxMana = intelligence * ñharacteristicsConfigSO.mana;
+        magicResistance = intelligence * ñharacteristicsConfigSO.magicResistance;
+        magicPower = intelligence * ñharacteristicsConfigSO.magicPower;
+
+
+
+        OnExperienceChanged?.Invoke(this, EventArgs.Empty);
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        OnManaChanged?.Invoke(this, EventArgs.Empty);
+    }
+}
+
+[System.Serializable]
+public struct PlayerStatsData
+{
+    public Vector3 position;
+
+    public float health;
+    public float mana;
+    public float targetExperience;
+    public float currentExperience;
+    public int level;
+    public int skillPoints;
 }

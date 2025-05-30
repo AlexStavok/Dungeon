@@ -86,4 +86,8 @@ public class Player : MonoBehaviour, IDamageable
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(gameObject.transform.position, interactRadius);
     }
+    private void OnDestroy()
+    {
+        InputManager.Instance.OnPlayerInteract -= InputManager_OnPlayerInteract;
+    }
 }

@@ -26,7 +26,12 @@ public class SaveSystem
     {
         HandleSaveData();
 
-        File.WriteAllText(SaveFileName(), JsonUtility.ToJson(saveData, true));
+        //File.WriteAllText(SaveFileName(), JsonUtility.ToJson(saveData, true));
+
+        string json = JsonUtility.ToJson(saveData, true);
+        string encryptedData = EncryptionUtility.EncryptString(json);
+
+        File.WriteAllText(SaveFileName(), encryptedData);
     }
     private static void HandleSaveData()
     {
@@ -40,14 +45,18 @@ public class SaveSystem
     {
         string path = SaveFileName();
 
-        if (!File.Exists(path))
+        if (!SaveExists())
         {
             return;
         }
 
         string saveContent = File.ReadAllText(path);
+        string decryptedData = EncryptionUtility.DecryptString(saveContent);
 
-        saveData = JsonUtility.FromJson<SaveData>(saveContent);
+        saveData = JsonUtility.FromJson<SaveData>(decryptedData);
+
+
+        //saveData = JsonUtility.FromJson<SaveData>(saveContent);
 
 
         HandleLoadData();

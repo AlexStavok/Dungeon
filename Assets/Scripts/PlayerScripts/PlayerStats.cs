@@ -54,10 +54,6 @@ public class PlayerStats : MonoBehaviour
         SetStartAttributes();
         CalculateCharacteristics();
     }
-    private void Start()
-    {
-
-    }
 
     private void SetStartAttributes()
     {

@@ -10,9 +10,6 @@ public class InputManager : MonoBehaviour
 
     public event EventHandler OnPlayerAttack;
 
-    public event EventHandler OnPlayerStartRun;
-    public event EventHandler OnPlayerStopRun;
-
     public event EventHandler OnPlayerInteract;
 
     public event EventHandler OnUsingMagicSwordSkill;
@@ -29,9 +26,6 @@ public class InputManager : MonoBehaviour
 
         playerActions.PlayerActionMap.Attack.performed += Attack_performed;
 
-        playerActions.PlayerActionMap.Run.performed += Run_performed;
-        playerActions.PlayerActionMap.Run.canceled += Run_canceled;
-
         playerActions.PlayerActionMap.Interact.performed += Interact_performed;
     }
 
@@ -39,16 +33,6 @@ public class InputManager : MonoBehaviour
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnPlayerInteract?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void Run_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnPlayerStartRun?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void Run_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnPlayerStopRun?.Invoke(this, EventArgs.Empty);
     }
 
     private void Attack_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
